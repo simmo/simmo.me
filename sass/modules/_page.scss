@@ -1,0 +1,41 @@
+.page {
+  background-color: #f9f9f9;
+  
+  &:nth-child(even) {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    
+    background-color: #f5f5f5;
+  }
+  
+  p {
+    padding-right: $grid-gutter;
+  }
+  
+  > .container {
+    padding: $grid-gutter * 3 $grid-gutter;
+  }
+}
+
+.page__header {
+  max-width: 30em;
+  margin: 0 auto;
+  
+  text-align: center;
+  
+  p {
+    padding-right: 0;
+  }
+}
+
+.page__subtitle {
+  @include font-size(.9);
+  
+  color: #aaa;
+}
+
+.page__cta {
+  margin-top: $grid-gutter;
+  margin-bottom: $grid-gutter * 2;
+}
+

@@ -1,0 +1,18 @@
+.progress {
+  @include font-size(.8);
+  
+  margin-bottom: $grid-gutter * .5;
+  
+  color: #555;
+  text-transform: uppercase;
+}
+
+.progress__bar {
+  background: #eee;
+}
+
+.progress__total {
+  height: 2px;
+  
+  background: $brand__about__primary;
+}

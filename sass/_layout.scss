@@ -1,0 +1,18 @@
+@import 'vendor/griddle';
+
+.container {
+  overflow: hidden;
+  max-width: 960px;
+  padding: 0 $grid-gutter;
+  margin: 0 auto;
+}
+
+.grid--tiled > .grid__cell {
+  margin-bottom: $grid-gutter;
+}
+
+@include griddle-build(3);
+
+@include media(medium) {
+  @include griddle-build(3, '--medium');
+}

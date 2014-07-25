@@ -1,0 +1,47 @@
+.browser {
+  max-width: 700px;
+  border: 1px solid #e5e5e5;
+  margin: 0 auto;
+  
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(#000, .07);
+  
+  
+  .no-touch &[data-animate] {
+    @include transform(translateY($grid-gutter));
+    
+    &.visible {
+      @include transform(translateY(0));
+    }
+  }
+  
+  &:before {
+    $button-spacer: 5px;
+    
+    @include background-with-css2-fallback(
+      radial-gradient($button-spacer at 14px 50%, #e16e57, #e16e57 $button-spacer, rgba(#eee, 0) $button-spacer + 1),
+      radial-gradient($button-spacer at 30px 50%, #f1c32b, #f1c32b $button-spacer, rgba(#eee, 0) $button-spacer + 1),
+      radial-gradient($button-spacer at 46px 50%, #79cc48, #79cc48 $button-spacer, rgba(#eee, 0) $button-spacer + 1),
+      linear-gradient(#f5f5f5, #eee)
+      #f5f5f5
+    );
+    
+    display: block;
+    height: 29px;
+    border-bottom: 1px solid #e5e5e5;
+    
+    border-radius: 4px 4px 0 0;
+    content: '';
+  }
+}
+
+.browser__content {
+  overflow: hidden;
+  
+  border-radius: 0 0 4px 4px;
+  
+  img {
+    display: block;
+    width: 100%;
+  }
+}

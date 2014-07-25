@@ -1,0 +1,72 @@
+@import 'base', 'layout', 'animation';
+
+html,
+body,
+.spacer {
+  height: 100%;
+}
+
+.wrapper {
+  @include backface-visibility(hidden);
+  
+  position: relative;
+  z-index: 10;
+  
+  background: #fff;
+}
+
+.section__title {
+  padding: $grid-gutter * .5 0;
+  
+  background: #fff;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  
+  #work & {
+    background-color: $brand__work__primary;
+  }
+  
+  #employment & {
+    background-color: $brand__life__primary;
+  }
+  
+  #skills & {
+    background-color: $brand__skills__primary;
+  }
+  
+  #about & {
+    background-color: $brand__about__primary;
+  }
+}
+
+.no-touch [data-animate],
+.no-touch [data-animate="each"] > * {
+  @include backface-visibility(hidden);
+  @include transition(none);
+  
+  opacity: 0;
+  
+  &.visible {
+    @include transition(all .5s);
+    
+    opacity: 1;
+  }
+}
+
+@import 'modules/achievements';
+@import 'modules/browser';
+@import 'modules/cta';
+@import 'modules/intro';
+@import 'modules/page';
+@import 'modules/progress';
+
+#about {
+  a {
+    color: $brand__about__primary;
+    
+    &:hover {
+      color: $brand__about__secondary;
+    }
+  }
+}

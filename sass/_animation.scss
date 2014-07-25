@@ -1,0 +1,71 @@
+@mixin keyframes($name) {
+  @if $experimental-support-for-webkit {
+    @-webkit-keyframes $name { @content; }
+  }
+  @if $experimental-support-for-opera {
+    @-o-keyframes $name { @content; }
+  }
+  @keyframes $name { @content; }
+}
+
+@mixin animation($options) {
+  @if $experimental-support-for-webkit {
+    -webkit-animation: $options;
+  }
+  @if $experimental-support-for-opera {
+    -o-animation: $options;
+  }
+  animation: $options;
+}
+
+@include keyframes(bounce) {
+  0% {
+    @include transform(translateY(0));
+  }
+  
+  40% {
+    @include transform(translateY(0));
+  }
+  
+  50% {
+    @include transform(translateY(5px));
+  }
+  
+  60% {
+    @include transform(translateY(0));
+  }
+  
+  70% {
+    @include transform(translateY(5px));
+  }
+  
+  80% {
+    @include transform(translateY(0));
+  }
+  
+  90% {
+    @include transform(translateY(5px));
+  }
+  
+  100% {
+    @include transform(translateY(0));
+  }
+}
+
+@include keyframes(scroll) {
+  70% {
+    stroke-dashoffset: 0;
+  }
+  
+  80% {
+    stroke-dashoffset: 11;
+  }
+  
+  90% {
+    stroke-dashoffset: 11;
+  }
+  
+  100% {
+    stroke-dashoffset: 22;
+  }
+}
