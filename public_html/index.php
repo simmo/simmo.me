@@ -21,7 +21,7 @@ $projects = array(
   array(
     'name' => 'Oktra',
     'url' => 'http://oktra.co.uk',
-    'description' => 'Responsive frontend build for the UK\'s leading office interior\'s&nbsp;firm.',
+    'description' => 'Part of the team responsible for delivering a responsive front end build for the UK\'s leading office interior\'s&nbsp;firm.',
     'image' => '/oktra.jpg'
   ),
 );
