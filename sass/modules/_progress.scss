@@ -1,4 +1,5 @@
 .progress {
+  @include backface-visibility(hidden);
   @include font-size(.8);
   
   margin-bottom: $grid-gutter * .5;
