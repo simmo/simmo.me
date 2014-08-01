@@ -33,7 +33,7 @@ $ ->
       $intro[0].style.opacity = (1 - ($.window.scrollTop() / introMax.height()))
       
     # Animation triggers
-    $.window.on 'resize.animate', ->
+    $.window.on 'load.animate resize.animate', ->
       $.window.animate =
         targets: []
         offsets: []

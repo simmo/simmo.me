@@ -39,7 +39,7 @@
         $intro[0].style.transform = transform;
         return $intro[0].style.opacity = 1 - ($.window.scrollTop() / introMax.height());
       });
-      $.window.on('resize.animate', function() {
+      $.window.on('load.animate resize.animate', function() {
         $.window.animate = {
           targets: [],
           offsets: [],
