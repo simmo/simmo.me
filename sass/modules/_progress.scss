@@ -3,16 +3,35 @@
   
   margin-bottom: $grid-gutter * .5;
   
-  color: #555;
+  color: #777;
   text-transform: uppercase;
+  
+  .no-touch [data-animate="each"] & {
+    opacity: 1;
+  }
 }
 
 .progress__bar {
-  background: #eee;
+  overflow: hidden;
+  
+  background: #ddd;
 }
 
 .progress__total {
   height: 2px;
   
   background: $brand__about__primary;
+  
+  .no-touch [data-animate="each"] & {
+    @include transition(all 1s ease-out);
+    @include transform(translateX(-100%));
+    
+    opacity: 0;
+  }
+  
+  .no-touch [data-animate="each"] .visible & {
+    @include transform(translateX(0));
+    
+    opacity: 1;
+  }
 }

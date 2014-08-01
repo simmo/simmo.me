@@ -40,7 +40,7 @@ body,
   }
 }
 
-.no-touch [data-animate],
+.no-touch [data-animate=""],
 .no-touch [data-animate="each"] > * {
   @include backface-visibility(hidden);
   @include transition(none);
@@ -48,7 +48,7 @@ body,
   opacity: 0;
   
   &.visible {
-    @include transition(all .5s);
+    @include transition(all 1s);
     
     opacity: 1;
   }
