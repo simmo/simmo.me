@@ -77,12 +77,7 @@ $skills = array(
             <div class="container">
               <h1 class="intro__title">Mike Simmonds</h1>
               <h2 class="h3 intro__lead">Web Developer and UI Designer</h2>
-              <nav class="intro__next">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="60px" height="100px" viewBox="0 0 60 100" enable-background="new 0 0 60 100" xml:space="preserve">
-                  <path fill="#fff" d="M30,3c14.888,0,27,12.112,27,27v40c0,14.888-12.112,27-27,27S3,84.888,3,70V30C3,15.112,15.112,3,30,3M30,0C13.5,0,0,13.5,0,30v40c0,16.5,13.5,30,30,30s30-13.5,30-30V30C60,13.5,46.5,0,30,0L30,0z"/>
-                  <line fill="none" stroke="#fff" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="6" x1="30" y1="13" x2="30" y2="44"/>
-                </svg>
-              </nav>
+              <a href="#work" class="intro__next">Next</a>
             </div>
           </div>
         </div>
