@@ -47,13 +47,11 @@ body,
 .no-touch [data-animate=""],
 .no-touch [data-animate="each"] > * {
   @include backface-visibility(hidden);
-  @include transition(none);
+  @include transition(all 1s);
   
   opacity: 0;
   
   &.visible {
-    @include transition(all 1s);
-    
     opacity: 1;
   }
 }

@@ -1,6 +1,6 @@
 (function() {
   $(function() {
-    var $intro, introMax;
+    var intro, introMax;
     $.window = $(window);
     $.body = $(document.body);
     $.window.data('originalTitle', document.title).on('blur', function() {
@@ -25,19 +25,20 @@
         }
       }
     });
-    $intro = $.body.find('.intro .intro__wrap');
-    introMax = $.body.find('.intro');
+    intro = document.body.querySelector('.intro .intro__wrap');
+    introMax = document.body.querySelector('.intro').clientHeight;
     if (!Modernizr.touch) {
       $.window.on('scroll.intro', function() {
-        var offset, transform;
-        if ($.window.scrollTop() > introMax.height()) {
+        var offset, opacity, transform;
+        opacity = 1 - ($.window.scrollTop() / introMax);
+        if ($.window.scrollTop() > introMax) {
           return;
         }
-        offset = ($.window.scrollTop() / introMax.height()) * -200;
+        offset = ($.window.scrollTop() / introMax) * -100;
         transform = "translate3d(0," + offset + "px,0)";
-        $intro[0].style.webkitTransform = transform;
-        $intro[0].style.transform = transform;
-        return $intro[0].style.opacity = 1 - ($.window.scrollTop() / introMax.height());
+        intro.style.webkitTransform = transform;
+        intro.style.transform = transform;
+        return intro.style.opacity = opacity;
       });
       $.window.on('load.animate resize.animate', function() {
         $.window.animate = {
@@ -45,7 +46,7 @@
           offsets: [],
           delta: $.window.height()
         };
-        return $('[data-animate]').map(function() {
+        return $('[data-animate=""], [data-animate="each"] > *').map(function() {
           return [[$(this).offset().top, this]];
         }).sort(function(a, b) {
           return a[0] - b[0];
@@ -56,21 +57,17 @@
       });
       $.window.trigger('resize');
       return $.window.on('scroll.animate', function() {
-        var viewport;
-        viewport = $.window.scrollTop() + $.window.animate.delta;
+        var bottom_of_window, third_of_window, viewport;
+        viewport = document.body.scrollTop + $.window.animate.delta;
+        third_of_window = $.window.animate.delta / 3;
+        bottom_of_window = document.body.scrollHeight - document.body.scrollTop === document.body.clientHeight;
         return $.window.animate.offsets.forEach(function(offset, i) {
-          var $target;
-          $target = $($.window.animate.targets[i]);
-          if (viewport >= offset + ($.window.animate.delta / 3)) {
-            if ($target.data('animate') === 'each') {
-              return $target.children().each(function(i, el) {
-                return setTimeout(function() {
-                  return $(el).addClass('visible');
-                }, 100 * i);
-              });
-            } else {
-              return $target.addClass('visible');
-            }
+          var target;
+          target = $.window.animate.targets[i];
+          if (viewport >= offset + third_of_window || bottom_of_window) {
+            return target.classList.add('visible');
+          } else {
+            return target.classList.remove('visible');
           }
         });
       });
