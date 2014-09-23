@@ -1,6 +1,6 @@
-guard 'coffeescript', input: 'coffeescript', output: 'public_html'
+guard 'coffeescript', input: 'coffeescript', output: 'public/javascripts'
 
-guard 'compass'
+guard 'compass', configuration_file: 'compass.rb'
  
 # guard 'process', name: 'Minify CSS', command: 'juicer merge public_html/application.css --force -c none' do
 #   watch %r{public_html/application\.css}
@@ -10,10 +10,10 @@ guard 'compass'
 #   watch %r{public_html/application\.js}
 # end
 
-guard 'uglify', input: 'public_html/application.js', output: "public_html/application.min.js" do
-  watch 'public_html/application.js'
+guard 'uglify', input: 'public/javascripts/application.js', output: 'public/javascripts/application.min.js' do
+  watch 'public/javascripts/application.js'
 end
 
 guard 'livereload' do
-  watch(%r{public_html/.+\.*})
+  watch(%r{(public|templates)/.+\.*})
 end

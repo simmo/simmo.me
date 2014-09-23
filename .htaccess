@@ -1,0 +1,38 @@
+# BEGIN GZIP
+<ifmodule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript image/svg+xml
+</ifmodule>
+# END GZIP
+
+# BEGIN: Cache Control
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 year"
+  ExpiresByType text/html "access plus 1 day"
+</IfModule>
+# END: Cache Control
+
+AddDefaultCharset UTF-8
+
+Options -Indexes
+
+# START: Rewrite
+# <IfModule mod_rewrite.c>
+RewriteEngine On
+# RewriteBase /
+RewriteRule ^public - [L]
+
+# Check public cache
+RewriteRule ^(.*)$ public/$1
+RewriteRule (.*)/$ $1/index
+
+# Add .html if not extension provided
+RewriteCond %{REQUEST_URI} !\..*$
+RewriteRule ^(.*)$ $1.html
+
+# Push through stack in not in cache
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]
+# </IfModule>
+# END: Rewrite
