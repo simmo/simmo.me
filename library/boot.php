@@ -6,10 +6,10 @@ require 'helpers.php';
 require_once file_build_path('.', 'vendor', 'autoload.php');
 
 // Initialize Slim
-$app = new \Slim\Slim([
+$app = new \Slim\Slim(array(
   'templates.path' => file_build_path('.', 'templates'),
   'view' => new \Slim\Views\Twig()
-]);
+));
 
 $app->configureMode('production', function() use ($app) {
   ini_set('display_errors', false);

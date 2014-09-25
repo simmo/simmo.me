@@ -46,7 +46,7 @@ $app->get('/', function() use ($app) {
     array('name' => 'cross-browser/legacy testing', 'total' => '98%')
   );
   
-  $app->render('index.html', ['projects' => $projects, 'skills' => $skills]);
+  $app->render('index.html', array('projects' => $projects, 'skills' => $skills));
 });
 
 $app->run();
