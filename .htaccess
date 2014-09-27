@@ -1,3 +1,7 @@
+AddDefaultCharset UTF-8
+SetEnv SLIM_MODE development
+Options -Indexes
+
 # BEGIN GZIP
 <ifmodule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript image/svg+xml
@@ -11,10 +15,6 @@
   ExpiresByType text/html "access plus 1 day"
 </IfModule>
 # END: Cache Control
-
-AddDefaultCharset UTF-8
-SetEnv SLIM_MODE development
-Options -Indexes
 
 # START: Rewrite
 <IfModule mod_rewrite.c>
