@@ -13,26 +13,26 @@
 # END: Cache Control
 
 AddDefaultCharset UTF-8
-
+SetEnv SLIM_MODE development
 Options -Indexes
 
 # START: Rewrite
-# <IfModule mod_rewrite.c>
-RewriteEngine On
-# RewriteBase /
-RewriteRule ^public - [L]
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # RewriteBase /
+  RewriteRule ^public - [L]
 
-# Check public cache
-RewriteRule ^(.*)$ public/$1
-RewriteRule (.*)/$ $1/index
+  # Check public cache
+  RewriteRule ^(.*)$ public/$1
+  RewriteRule (.*)/$ $1/index
 
-# Add .html if not extension provided
-RewriteCond %{REQUEST_URI} !\..*$
-RewriteRule ^(.*)$ $1.html
+  # Add .html if not extension provided
+  RewriteCond %{REQUEST_URI} !\..*$
+  RewriteRule ^(.*)$ $1.html
 
-# Push through stack in not in cache
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . index.php [L]
-# </IfModule>
+  # Push through stack in not in cache
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . index.php [E=SLIM_MODE:development,L]
+</IfModule>
 # END: Rewrite
