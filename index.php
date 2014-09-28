@@ -49,4 +49,8 @@ $app->get('/', function() use ($app) {
   $app->render('index.html', array('projects' => $projects, 'skills' => $skills));
 });
 
+$app->get('/mr-dixons-tea', function() use ($app) {
+  $app->render('mr-dixons-tea.html');
+});
+
 $app->run();
