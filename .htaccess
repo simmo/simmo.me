@@ -1,5 +1,4 @@
 AddDefaultCharset UTF-8
-SetEnv SLIM_MODE development
 Options -Indexes
 
 # BEGIN GZIP
@@ -33,6 +32,6 @@ Options -Indexes
   # Push through stack in not in cache
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . index.php [E=SLIM_MODE:development,L]
+  RewriteRule . index.php [L]
 </IfModule>
 # END: Rewrite
