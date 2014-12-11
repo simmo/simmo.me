@@ -48,6 +48,16 @@ $app->get('/', function() use ($app) {
   
   $employment = array(
     array(
+      'company' => 'Zone',
+      'start_date' => strtotime('2014/09/29'),
+      'end_date' => null,
+      'description' => 'Senior front-end developer',
+      'recommendations' => null,
+      'achievements' => array(
+        'Front-end integration with .NET frameworks'
+      )
+    ),
+    array(
       'company' => 'Caspian Media',
       'start_date' => strtotime('2009/03/16'),
       'end_date' => strtotime('2014/09/26'),
