@@ -133,6 +133,22 @@ class SimmoTwigExtension extends Twig_Extension {
       new Twig_SimpleFunction('image_tag', function($file, $html_options = array()) {
         $attributes = array_merge(array('src' => $this->image_path($file)), $html_options);
         return $this->tag('img', $attributes);
+      }),
+      new Twig_SimpleFunction('time_ago_in_words', function($from_time, $to_time = null, $options = array()) {
+        $periods = array("second", "minute", "hour", "day", "week", "month", "year", "decade");
+        $lengths = array("60","60","24","7","4.35","12","10");
+
+        if (!$to_time) $to_time = time();
+
+        $difference     = $to_time - $from_time;
+
+        for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) $difference /= $lengths[$j];
+
+        $difference = round($difference);
+
+        if ($difference != 1) $periods[$j] .= 's';
+
+        return "$difference $periods[$j]";
       })
     );
   }
