@@ -1,0 +1,41 @@
+.social {
+	@extend %container;
+
+	&__list {
+		display: flex;
+		padding: 1rem;
+
+		justify-content: center;
+	}
+
+	&__item {
+		color: #ccc;
+		font-size: .8rem;
+		text-align: center;
+		text-transform: uppercase;
+
+		& + &:before {
+			display: inline-block;
+			margin: 0 .5rem;
+
+			content: '/';
+		}
+	}
+
+	&__link {
+		display: inline-block;
+
+		color: #555;
+		transition: color .3s, padding .3s;
+
+		&:hover {
+			padding: 0 .5rem;
+		}
+
+		@each $brand in map-keys($social-brands) {
+            &--#{$brand}:hover {
+                color: map-get($social-brands, $brand);
+            }
+        }
+	}
+}

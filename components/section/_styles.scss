@@ -1,0 +1,44 @@
+.section {
+    padding: times($gutter, 2) 0;
+
+    &:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+
+    &__header {
+        text-align: center;
+    //     background-color: $green;
+    }
+
+    // &--quotes &__header {
+    //     background-color: $blue;
+    // }
+
+    // &--clients &__header {
+    //     background-color: $purple;
+    // }
+
+    // &--employment &__header {
+    //     background-color: $red;
+    // }
+
+    // &--contained &__content,
+    &__name {
+    	// @extend %container;
+    }
+
+    &__name {
+        display: inline-block;
+        padding: times($gutter, .5) 0;
+        border-bottom: 2px solid #000;
+
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    // &__content > * {
+    //     &:nth-child(odd) {
+    //         background-color: #f9f9f9;
+    //     }
+    // }
+}

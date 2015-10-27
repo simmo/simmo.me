@@ -1,0 +1,63 @@
+import React, { Component } from 'react'
+import Project              from './project'
+import Header               from './header'
+import Section              from './section'
+import Slider               from './slider'
+import Recommendation       from './recommendation'
+import Social               from './social'
+import Employer             from './employer'
+import Clients              from './clients'
+import moment               from 'moment'
+
+moment.locale('en', {
+    relativeTime : {
+        future: "in %s",
+        past:   "%s ago",
+        s:  "seconds",
+        m:  "a minute",
+        mm: "%d minutes",
+        h:  "an hour",
+        hh: "%d hours",
+        d:  "1 day",
+        dd: "%d days",
+        M:  "1 month",
+        MM: "%d months",
+        y:  "1 year",
+        yy: "%d years"
+    }
+})
+
+export default class App extends Component {
+    componentDidMount() {
+        document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, 'js')
+    }
+
+    render() {
+        var projects = this.props.projects.map((project, index) => <Project key={index} {...project} />)
+        var recommendations = this.props.recommendations.map((recommendation, index) => <Recommendation key={index} {...recommendation} />)
+        var employers = this.props.employers.map((employer, index) => <Employer key={index} {...employer} />)
+
+        return (
+            <div className="wrap">
+                <Header />
+                <div className="app__body">
+                    <Section name="Work" className="work" contained>
+                        {projects}
+                    </Section>
+                    <Section name="Recommendations" className="quotes">
+                        <Slider>
+                            {recommendations}
+                        </Slider>
+                    </Section>
+                    <Section name="Clients" className="clients" contained>
+                        <Clients items={this.props.clients} />
+                    </Section>
+                    <Section name="Employment" className="employment" contained>
+                        {employers}
+                    </Section>
+                    <Social />
+                </div>
+           </div>
+        )
+    }
+}
