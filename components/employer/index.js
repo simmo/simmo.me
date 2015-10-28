@@ -11,6 +11,7 @@ export default class Employer extends Component {
         return (
             <article className="employer">
                 <header className="employer__primary">
+                    <img src={'/images/employers/' + employer.logo + '.svg'} className="employer__logo" alt={employer.name} />
                 	<h2 className="employer__name">{employer.name}</h2>
                     <p className="employer__when">
                         {startDate.format('MMM YY')} - {endDate? endDate.format('MMM YY') : 'Present'}

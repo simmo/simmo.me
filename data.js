@@ -165,7 +165,8 @@ export default {
     ],
     employers: [
         {
-            name: 'Zone',
+            name: 'Zone Ltd',
+            logo: 'zone',
             startDate: '2014-09-29',
             endDate: null,
             position: 'Senior front-end developer',
@@ -180,7 +181,8 @@ export default {
             ]
         },
         {
-            name: 'Caspian Media',
+            name: 'Caspian Media Ltd',
+            logo: 'caspian',
             startDate: '2009-03-16',
             endDate: '2014-09-26',
             position: 'Lead developer',
@@ -195,7 +197,8 @@ export default {
             ]
         },
         {
-            name: 'Sainsbury\'s',
+            name: 'Sainsbury\'s Plc',
+            logo: 'sainsburys',
             startDate: '2002-08-01',
             endDate: '2009-03-14',
             position: 'Online co-ordinator',

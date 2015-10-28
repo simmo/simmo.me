@@ -33,6 +33,19 @@
 		}
 	}
 
+	&__logo {
+		display: none;
+		width: auto;
+		height: auto;
+		max-width: 10rem;
+		max-height: 4rem;
+		margin-bottom: .5rem;
+
+		@media (min-width: $breakpoint-1) {
+			display: block;
+		}
+	}
+
 	&__name {
 		font-size: 1.2rem;
 		font-weight: bold;
@@ -67,18 +80,18 @@
 
 	&__position {
 		font-size: 1.1rem;
+		font-weight: bold;
 	}
 
 	&__achievements {
 		margin-top: .5rem;
 
 		color: #666;
-		// font-size: .9rem;
 	}
 
 	&__achievement {
 		padding-left: 1.5rem;
-		background: url(/images/tick.svg) no-repeat 0 .15rem / 1rem;
+		background: url(/images/tick.svg) no-repeat 0 .25rem / 1rem;
 
 		& + & {
 			margin-top: .25rem;
