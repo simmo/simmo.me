@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
+import moment from 'moment';
 
 export default class Employer extends Component {
     render() {
-        let employer = this.props
+        var employer = this.props
+
+        let startDate = moment(employer.startDate)
+        let endDate = employer.endDate? moment(employer.endDate) : null
 
         return (
             <article className="employer">
                 <header className="employer__primary">
                 	<h2 className="employer__name">{employer.name}</h2>
                     <p className="employer__when">
-                        {employer.startDate.format('MMM YY')} - {employer.endDate? employer.endDate.format('MMM YY') : 'Present'}
-                        <span className="employer__duration">{employer.endDate? employer.startDate.from(employer.endDate, true) : employer.startDate.fromNow(true)}</span>
+                        {startDate.format('MMM YY')} - {endDate? endDate.format('MMM YY') : 'Present'}
+                        <span className="employer__duration">{endDate? startDate.from(endDate, true) : startDate.fromNow(true)}</span>
                     </p>
                 </header>
                 <div className="employer__secondary">

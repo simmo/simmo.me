@@ -1,5 +1,3 @@
-import moment from 'moment'
-
 export default {
     projects: [
         {
@@ -168,7 +166,7 @@ export default {
     employers: [
         {
             name: 'Zone',
-            startDate: moment('2014-09-29'),
+            startDate: '2014-09-29',
             endDate: null,
             position: 'Senior front-end developer',
             achievements: [
@@ -183,8 +181,8 @@ export default {
         },
         {
             name: 'Caspian Media',
-            startDate: moment('2009-03-16'),
-            endDate: moment('2014-09-26'),
+            startDate: '2009-03-16',
+            endDate: '2014-09-26',
             position: 'Lead developer',
             achievements: [
                 'Designed and built a custom CMS and framework that has been in use for over 5 years and manages Caspian\'s web portfolio',
@@ -198,8 +196,8 @@ export default {
         },
         {
             name: 'Sainsbury\'s',
-            startDate: moment('2002-08-01'),
-            endDate: moment('2009-03-14'),
+            startDate: '2002-08-01',
+            endDate: '2009-03-14',
             position: 'Online co-ordinator',
             achievements: [
                 'Learning how to manage a large, diverse, team with different wants and needs',

@@ -13,6 +13,7 @@ if (isDevelopment) app.use(express.static(__dirname + '/public'))
 
 // Render and serve React
 app.get('/', (req, res) => {
+    const initialData = JSON.stringify(data)
     const initialHtml = ReactDOMServer.renderToString(<App {...data} />)
     const googleTagManager = `
         <!-- Google Tag Manager -->
@@ -36,6 +37,7 @@ app.get('/', (req, res) => {
                 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css" />
                 <link href="/css/app.css" rel="stylesheet" type="text/css" />
                 ${isDevelopment? '' : googleTagManager }
+                <script>window.__initialData = ${initialData}</script>
             </head>
             <body>
                 <div id="mount">${initialHtml}</div>
