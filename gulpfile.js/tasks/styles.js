@@ -8,15 +8,14 @@ var gutil			= require('gulp-util');
 var minifyCss		= require('gulp-minify-css');
 var sass            = require('gulp-sass');
 
-gulp.task('styles', function() {
+module.exports = function() {
 
-    gulp.src(config.sass.src)
+    return gulp.src(config.sass.src)
         .pipe(sass(config.sass))
 	        .on('error', gutil.log.bind(gutil, 'Sass Error'))
         .pipe(autoprefixer(config.autoprefixer))
         	.on('error', gutil.log.bind(gutil, 'Autoprefixer Error'))
         .pipe(config.production ? minifyCss() : gutil.noop())
-        .pipe(gulp.dest(config.sass.dist))
-        .pipe(config.production ? gutil.noop() : browserSync.reload({ stream: true }));
+        .pipe(gulp.dest(config.sass.dist));
 
-});
+};

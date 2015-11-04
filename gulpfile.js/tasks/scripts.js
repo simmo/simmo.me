@@ -9,7 +9,7 @@ var gutil           = require('gulp-util');
 var uglify          = require('gulp-uglify');
 var source			= require('vinyl-source-stream');
 
-gulp.task('scripts', function() {
+module.exports = function() {
 
 	return browserify('./javascript/app.js', {
         	debug: !config.production
@@ -22,7 +22,6 @@ gulp.task('scripts', function() {
         .pipe(source('app.js'))
         .pipe(buffer())
         .pipe(config.production ? uglify() : gutil.noop())
-        .pipe(gulp.dest(config.scripts.dist))
-        .pipe(config.production ? gutil.noop() : browserSync.reload({ stream: true }));
+        .pipe(gulp.dest(config.scripts.dist));
 
-});
+};
