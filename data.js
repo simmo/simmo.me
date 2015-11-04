@@ -159,6 +159,10 @@ export default {
             logo: 'gatwick'
         },
         {
+            name: 'Virgin Media Business',
+            logo: 'virgin-media'
+        },
+        {
             name: 'Atkins',
             logo: 'atkins'
         }
