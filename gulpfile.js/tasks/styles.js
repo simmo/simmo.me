@@ -1,7 +1,6 @@
 'use strict';
 
 var autoprefixer    = require('gulp-autoprefixer');
-var browserSync		= require('browser-sync');
 var config			= require('../config');
 var gulp            = require('gulp');
 var gutil			= require('gulp-util');
