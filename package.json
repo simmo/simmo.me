@@ -46,6 +46,6 @@
   },
   "scripts": {
     "start": "index.js",
-    "dev": "gulp"
+    "build": "gulp"
   }
 }
