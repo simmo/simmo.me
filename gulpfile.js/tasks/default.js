@@ -1,5 +1,6 @@
 'use strict';
 
-var gulp = require('gulp');
+var config = require('../config');
+var gulp   = require('gulp');
 
-gulp.task('default', ['browser-sync', 'scripts', 'styles', 'watch']);
+gulp.task('default', config.production ? ['scripts', 'styles'] : ['browser-sync', 'scripts', 'styles', 'watch']);

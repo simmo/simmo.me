@@ -15,8 +15,8 @@ gulp.task('styles', function() {
 	        .on('error', gutil.log.bind(gutil, 'Sass Error'))
         .pipe(autoprefixer(config.autoprefixer))
         	.on('error', gutil.log.bind(gutil, 'Autoprefixer Error'))
-        // .pipe(minifyCss())
+        .pipe(config.production ? minifyCss() : gutil.noop())
         .pipe(gulp.dest(config.sass.dist))
-        .pipe(browserSync.reload({ stream: true }));
+        .pipe(config.production ? gutil.noop() : browserSync.reload({ stream: true }));
 
 });

@@ -6,6 +6,7 @@ module.exports = {
             'last 2 versions'
         ]
     },
+    production: (process.env.NODE_ENV === 'production'),
     sass: {
         errLogToConsole: true,
         dist: 'public/css',
@@ -13,7 +14,7 @@ module.exports = {
         outputStyle: 'expanded'
     },
     scripts: {
-        src: 'coffeescript/*.coffee',
+        src: ['components/**/*', 'javascript/**/*'],
         dist: 'public/javascripts'
     }
 };
