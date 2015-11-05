@@ -5,7 +5,8 @@
   "description": "Personal website, CV and portfolio of Mike Simmonds.",
   "repository": "https://github.com/simmo/simmo.me.git",
   "devDependencies": {
-    "browser-sync": "^2.6.11"
+    "browser-sync": "^2.6.11",
+    "flightplan": "^0.6.6"
   },
   "author": {
     "name": "Mike Simmonds",
@@ -47,6 +48,7 @@
   },
   "scripts": {
     "start": "index.js",
-    "build": "gulp"
+    "build": "gulp",
+    "deploy": "fly deploy:production"
   }
 }
