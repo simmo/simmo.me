@@ -36,6 +36,7 @@ app.get('/', (req, res) => {
                 <meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1" />
                 <meta name="apple-mobile-web-app-title" content="simmo.me" />
                 <meta name="application-name" content="simmo.me" />
+                <link rel="mask-icon" href="favicon.svg" color="#2ecc71" />
                 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css" />
                 <link href="/css/app.css" rel="stylesheet" type="text/css" />
                 ${isDevelopment? '' : googleTagManager }
