@@ -1,0 +1,23 @@
+.clients {
+	@extend %container;
+
+	display: flex;
+	max-width: 600px;
+	margin-top: $gutter;
+
+	justify-content: center;
+	flex-flow: wrap;
+
+	&__item {
+		box-sizing: border-box;
+		display: flex;
+		max-width: 200px;
+		padding: 1rem;
+		align-items: center;
+
+		@media (min-width: $breakpoint-1) {
+			width: 25%;
+			max-width: auto;
+		}
+	}
+}

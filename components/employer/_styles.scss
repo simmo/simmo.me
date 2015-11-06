@@ -1,0 +1,100 @@
+.employer {
+	@extend %container;
+
+	padding-top: times($gutter, 1.5);
+	padding-bottom: times($gutter, 1.5);
+
+	& + & {
+		border-top: 1px solid #f1f1f1;
+	}
+
+	@media (min-width: $breakpoint-1) {
+		display: flex;
+	}
+
+	&__primary {
+		display: flex;
+		margin-bottom: 1rem;
+
+		align-items: baseline;
+		justify-content: space-between;
+
+		@media (min-width: $breakpoint-1) {
+			display: block;
+			padding-right: times($gutter, 2);
+
+			flex: 1;
+		}
+	}
+
+	&__secondary {
+		@media (min-width: $breakpoint-1) {
+			flex: 2;
+		}
+	}
+
+	&__logo {
+		display: none;
+		width: auto;
+		height: auto;
+		max-width: 10rem;
+		max-height: 4rem;
+		margin-bottom: .5rem;
+
+		@media (min-width: $breakpoint-1) {
+			display: block;
+		}
+	}
+
+	&__name {
+		font-size: 1.2rem;
+		font-weight: bold;
+	}
+
+	&__when {
+		color: #555;
+		font-size: .9rem;
+		text-align: right;
+
+		@media (min-width: $breakpoint-1) {
+			font-size: 1rem;
+			text-align: left;
+		}
+	}
+
+	&__duration {
+		display: inline-block;
+		margin-left: .5rem;
+
+		color: #999;
+
+		@media (min-width: $breakpoint-1) {
+			display: block;
+			margin-left: 0;
+			margin-top: .25rem;
+
+			font-size: .8rem;
+			text-transform: uppercase;
+		}
+	}
+
+	&__position {
+		font-size: 1.1rem;
+		font-weight: bold;
+	}
+
+	&__achievements {
+		margin-top: .5rem;
+
+		color: #666;
+	}
+
+	&__achievement {
+		padding-left: 1.5rem;
+		background: url(/images/tick.svg) no-repeat 0 .25rem / 1rem;
+
+		& + & {
+			margin-top: .25rem;
+		}
+	}
+}

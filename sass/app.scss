@@ -1,0 +1,109 @@
+$gutter: 2rem;
+$breakpoint-1: 830px;
+$green: #2ecc71;
+$green--alt: #27ae60;
+$red: #e74c3c;
+$red--alt: #c0392b;
+$blue: #3498db;
+$blue--alt: #2980b9;
+$purple: #9b59b6;
+$purple--alt: #8e44ad;
+$charcoal: #222;
+$charcoal--alt: #111;
+$social-brands: (
+    github: #bd2c00,
+    stackoverflow: #f90,
+    twitter: #00aced,
+    linkedin: #007bb6,
+    instagram: #517fa4,
+    email: #aaa
+);
+
+@function times($integer, $by) {
+    @return $integer * $by;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(5px);
+    }
+
+    60% {
+        transform: translateY(0);
+    }
+
+    70% {
+        transform: translateY(5px);
+    }
+
+    80% {
+        transform: translateY(0);
+    }
+
+    90% {
+        transform: translateY(5px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+
+@import 'reset';
+@import 'bem';
+
+
+%container {
+    max-width: 960px;
+    padding: 0 $gutter;
+    margin: 0 auto;
+
+    @media (min-width: 500px) and (max-width: $breakpoint-1) {
+        padding: 0 times($gutter, 2);
+    }
+}
+
+body {
+    color: #111;
+    background-color: #fafafa;
+    font-family: 'Lato', sans-serif;
+    line-height: 1.5;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.app {
+    &__body {
+        background-color: #fff;
+        box-shadow: 0 0 50px rgba(#000, .5);
+    }
+}
+
+@import '../components/header/styles';
+@import '../components/section/styles';
+@import '../components/project/styles';
+@import '../components/browser/styles';
+@import '../components/cta/styles';
+@import '../components/clients/styles';
+@import '../components/recommendation/styles';
+@import '../components/slider/styles';
+@import '../components/employer/styles';
+@import '../components/social/styles';
+@import '../components/footer/styles';
