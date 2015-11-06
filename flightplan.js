@@ -3,7 +3,7 @@
 var plan  = require('flightplan')
 var join = require('path').join
 
-const application = 'beta.simmo.me'
+const application = 'simmo.me'
 const deployTo = join('/var/www', application)
 const repoUrl = 'https://github.com/simmo/simmo.me.git'
 const branch = 'master'
