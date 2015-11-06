@@ -8,13 +8,15 @@ $blue: #3498db;
 $blue--alt: #2980b9;
 $purple: #9b59b6;
 $purple--alt: #8e44ad;
+$charcoal: #222;
+$charcoal--alt: #111;
 $social-brands: (
     github: #bd2c00,
     stackoverflow: #f90,
     twitter: #00aced,
     linkedin: #007bb6,
     instagram: #517fa4,
-    email: #555
+    email: #aaa
 );
 
 @function times($integer, $by) {
@@ -104,3 +106,4 @@ a {
 @import '../components/slider/styles';
 @import '../components/employer/styles';
 @import '../components/social/styles';
+@import '../components/footer/styles';

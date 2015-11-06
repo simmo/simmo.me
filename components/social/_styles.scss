@@ -3,33 +3,46 @@
 
 	&__list {
 		display: flex;
-		padding: 1rem;
 
+		flex-wrap: wrap;
 		justify-content: center;
 	}
 
 	&__item {
-		color: #ccc;
+		display: block;
+		max-width: 10rem;
+
 		font-size: .8rem;
+		font-weight: 600;
 		text-align: center;
 		text-transform: uppercase;
 
-		& + &:before {
-			display: inline-block;
-			margin: 0 .5rem;
+		@media (min-width: 40em) {
+			& + &:before {
+				display: inline-block;
+				margin: 0 .5rem;
 
-			content: '/';
+				content: '/';
+			}
 		}
 	}
 
 	&__link {
 		display: inline-block;
+		padding: 0 .5rem;
 
-		color: #555;
-		transition: color .3s, padding .3s;
+		color: #666;
+		transition-property: color;
+		transition-duration: .3s;
 
-		&:hover {
-			padding: 0 .5rem;
+		@media (min-width: 40em) {
+			padding: 0;
+
+			transition-property: color, padding;
+
+			&:hover {
+				padding: 0 .5rem;
+			}
 		}
 
 		@each $brand in map-keys($social-brands) {

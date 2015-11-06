@@ -4,7 +4,7 @@ import Header               from './header'
 import Section              from './section'
 import Slider               from './slider'
 import Recommendation       from './recommendation'
-import Social               from './social'
+import Footer               from './footer'
 import Employer             from './employer'
 import Clients              from './clients'
 import moment               from 'moment'
@@ -55,7 +55,7 @@ export default class App extends Component {
                     <Section name="Employment" className="employment" contained>
                         {employers}
                     </Section>
-                    <Social />
+                    <Footer />
                 </div>
            </div>
         )
