@@ -88,7 +88,7 @@ export default {
             'photo': 'amy-willoughby.jpg'
         },
         {
-            'quote': 'Mike is top developer! <mark>Highly skilled, very knowledge, methodical and a genuinely nice guy</mark> - He is a very well rounded developer and has great attitude to life, learning and new technologies. Mike was <mark>a great mentor</mark> to me, encouraging me to push myself whilst offering great support and <mark>brilliant problem solving skills</mark> and techniques. I can highly recommend Mike for all things web related!',
+            'quote': 'Mike is a top developer! <mark>Highly skilled, very knowledge, methodical and a genuinely nice guy</mark> - He is a very well rounded developer and has great attitude to life, learning and new technologies. Mike was <mark>a great mentor</mark> to me, encouraging me to push myself whilst offering great support and <mark>brilliant problem solving skills</mark> and techniques. I can highly recommend Mike for all things web related!',
             'author': 'Luke Zammit',
             'role': 'Front End/UI Developer at Macmillan',
             'photo': 'luke-zammit.jpg'
