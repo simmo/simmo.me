@@ -41,7 +41,7 @@ export default class App extends Component {
             <div className="wrap">
                 <Header />
                 <div className="app__body">
-                    <Section name="Work" className="work" contained>
+                    <Section name="Work" className="work">
                         {projects}
                     </Section>
                     <Section name="Recommendations" className="quotes">
@@ -49,10 +49,10 @@ export default class App extends Component {
                             {recommendations}
                         </Slider>
                     </Section>
-                    <Section name="Clients" className="clients" contained>
+                    <Section name="Clients" className="clients">
                         <Clients items={this.props.clients} />
                     </Section>
-                    <Section name="Employment" className="employment" contained>
+                    <Section name="Employment" className="employment">
                         {employers}
                     </Section>
                     <Footer />
