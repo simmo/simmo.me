@@ -17,5 +17,5 @@ if (config.production) {
 	var watch = require('./tasks/watch');
 	
 	gulp.task('default', ['scripts', 'styles', 'watch']);
-	gulp.task('watch', watch);
+	gulp.task('watch', ['scripts', 'styles'], watch);
 }
