@@ -1,6 +1,6 @@
 'use strict'
 
-var plan  = require('flightplan')
+var plan = require('flightplan')
 var join = require('path').join
 
 const application = 'simmo.me'
@@ -41,8 +41,10 @@ var deploy = {
 		transport.exec(`mkdir -p ${releasesPath} ${sharedPath}`)
 
 		// 4) Check shared directories exist
-		let dirs = linkedDirs.map(dir => join(sharedPath, dir)).join()
-		transport.exec(`mkdir -p ${dirs}`)
+		if (linkedDirs.length) {
+			let dirs = linkedDirs.map(dir => join(sharedPath, dir)).join()
+			transport.exec(`mkdir -p ${dirs}`)
+		}
 
 		// 5) Check we have a repo
 		if (transport.exec(`[ -f ${join(repoPath, 'HEAD')} ]`, { failsafe: true, silent: true }).code === 0) {
@@ -72,17 +74,19 @@ var deploy = {
 		transport.exec(`git -C ${repoPath} archive ${branch} | tar -x -f - -C ${releasePath}`)
 
 		// 3) Create symlinked directories
-		let dirs = linkedDirs.map(dir => join(releasePath, dir)).join()
-		transport.exec(`mkdir -p ${dirs}`)
+		if (linkedDirs.length) {
+			let dirs = linkedDirs.map(dir => join(releasePath, dir)).join()
+			transport.exec(`mkdir -p ${dirs}`)
 
-		linkedDirs.forEach(dir => {
-			let target = join(releasePath, dir)
-			let source = join(sharedPath, dir)
-			if (transport.exec(`[ -d ${target} ]`, { failsafe: true, silent: true }).code === 0) {
-				transport.exec(`rm -rf ${target}`)
-			}
-            transport.exec(`ln -s ${source} ${target}`)
-		})
+			linkedDirs.forEach(dir => {
+				let target = join(releasePath, dir)
+				let source = join(sharedPath, dir)
+				if (transport.exec(`[ -d ${target} ]`, { failsafe: true, silent: true }).code === 0) {
+					transport.exec(`rm -rf ${target}`)
+				}
+	            transport.exec(`ln -s ${source} ${target}`)
+			})
+		}
 
 		// 4) Run npm install and build
 		transport.with(`cd ${releasePath}`, () => {
