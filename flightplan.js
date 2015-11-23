@@ -20,6 +20,7 @@ const linkedDirs        = []
 const copiedDirs        = ['node_modules']
 
 var revision            = null
+var localUser           = null
 
 var envs = {
     production: {
@@ -30,6 +31,9 @@ var envs = {
 }
 
 var deploy = {
+    prep: (transport) => {
+        localUser = transport.exec(`whoami`).stdout.trim()
+    },
     check: (transport) => {
         transport.log('Checking environment...')
         transport.silent()
@@ -130,7 +134,7 @@ var deploy = {
         transport.exec(`ln -sfn ${releasePath} ${currentPath}`)
 
         // 2) Update log
-        transport.exec(`printf "[%s %s] Branch %s (at %s) deployed as release %s by %s\n" $(date '+%Y-%m-%d %H:%M:%S') "${branch}" "${revision}" "${releaseTimestamp}" $(whoami) >> ${deploymentLogPath}`);
+        transport.exec(`printf "[%s %s] Branch %s (at %s) deployed as release %s by %s\n" $(date '+%Y-%m-%d %H:%M:%S') "${branch}" "${revision}" "${releaseTimestamp}" "${localUser}" >> ${deploymentLogPath}`)
     },
     restart: (transport) => {
         // 1) Restart node process
@@ -160,6 +164,7 @@ var deploy = {
 
 plan.target('production', envs.production)
 
+plan.local('deploy', deploy.prep)
 plan.remote('deploy', deploy.check)
 plan.remote('deploy', deploy.create)
 plan.remote('deploy', deploy.publish)
