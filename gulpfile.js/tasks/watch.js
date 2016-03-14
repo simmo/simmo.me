@@ -1,11 +1,11 @@
 'use strict';
 
-var browserSync		= require('browser-sync');
-var gulp            = require('gulp');
+var browserSync = require('browser-sync');
+var gulp        = require('gulp');
 
 module.exports = function() {
 
-	browserSync.init({
+    browserSync.init({
         proxy: 'localhost:8080'
     });
 
@@ -13,6 +13,6 @@ module.exports = function() {
 
     gulp.watch(['javascript/**/*', 'components/**/*.js'], ['scripts']);
 
-	gulp.watch('public/**/*').on('change', browserSync.reload);
+    gulp.watch('public/**/*').on('change', browserSync.reload);
 
 };

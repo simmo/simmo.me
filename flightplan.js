@@ -175,8 +175,8 @@ var deploy = {
 
         // If we have a previous release
         if (previousRelease) {
-            console.log(releases);
-            console.log(currentReleasePath);
+            console.log(releases)
+            console.log(currentReleasePath)
 
             // 1) Point current synlink to previous release
             transport.log(`ln -sfn ${previousRelease} ${currentPath}`)

@@ -1,17 +1,17 @@
 .footer {
-	padding-top: $gutter;
-	padding-bottom: $gutter;
+    padding-top: $gutter;
+    padding-bottom: $gutter;
 
-	background-color: #eee;
-	color: #bbb;
+    background-color: #eee;
+    color: #bbb;
 
-	&__copyright {
-		@extend %container;
+    &__copyright {
+        @extend %container;
 
-		margin-top: 1rem;
+        margin-top: 1rem;
 
-		font-size: .8rem;
-		text-align: center;
-		text-transform: uppercase;
-	}
+        font-size: .8rem;
+        text-align: center;
+        text-transform: uppercase;
+    }
 }

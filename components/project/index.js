@@ -9,7 +9,7 @@ export default class Project extends Component {
 
     componentDidMount() {
         this.scrollListener = throttle((event) => {
-            let halfViewport = window.innerHeight * .6
+            let halfViewport = window.innerHeight * 0.6
             let { top: elementTop } = this.wrapper.getBoundingClientRect()
 
             // Remove scroll listener if offset beyond half of viewport
