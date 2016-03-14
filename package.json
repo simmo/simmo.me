@@ -49,6 +49,7 @@
   "scripts": {
     "start": "index.js",
     "build": "gulp",
-    "deploy": "fly deploy:production"
+    "deploy": "fly deploy:production",
+    "rollback": "fly rollback:production"
   }
 }

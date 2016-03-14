@@ -159,6 +159,31 @@ var deploy = {
                 transport.with(`cd ${releasesPath}`, () => transport.exec(`rm -rf ${releases.join(' ')}`))
             }
         }
+    },
+    rollback: (transport) => {
+        transport.log('Rolling back to previous release...')
+        transport.silent()
+
+        let fetchReleases = transport.exec(`ls -r ${releasesPath}`)
+        let releases = fetchReleases.stdout.trim().split('\n')
+        let currentReleasePath = transport.exec(`readlink -f ${currentPath}`).stdout.trim()
+        let currentReleaseDir = path.basename(currentReleasePath)
+
+        release = releases[releases.indexOf(currentReleaseDir) + 1]
+
+        let previousRelease = path.join(releasesPath, release)
+
+        // If we have a previous release
+        if (previousRelease) {
+            console.log(releases);
+            console.log(currentReleasePath);
+
+            // 1) Point current synlink to previous release
+            transport.log(`ln -sfn ${previousRelease} ${currentPath}`)
+
+            // 2) Update log
+            transport.log(`printf "[%s %s] %{%s} rolled back to release %{release}\n" $(date '+%Y-%m-%d %H:%M:%S') "${localUser}" "${release}" >> ${deploymentLogPath}`)
+        }
     }
 }
 
@@ -170,3 +195,7 @@ plan.remote('deploy', deploy.create)
 plan.remote('deploy', deploy.publish)
 plan.remote('deploy', deploy.restart)
 plan.remote('deploy', deploy.cleanup)
+
+plan.local('rollback', deploy.prep)
+plan.remote('rollback', deploy.rollback)
+plan.remote('rollback', deploy.restart)
