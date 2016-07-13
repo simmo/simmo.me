@@ -88,6 +88,12 @@ export default {
             photo: 'amy-willoughby.jpg'
         },
         {
+            quote: 'I worked on a project that Mike was <mark>Tech Leading</mark> on and it was a delight! He is <mark>extremely knowledgeable</mark> and a <mark>very competent developer</mark>. He pays <mark>high attention to detail</mark> and is a <mark>great person to discuss ideas/approach with</mark>. He <mark>communicated well</mark> with all of the <mark>cross-disciplinary team</mark> and protected me from a lot of the project admin. Also he\'s a very <mark>lovely person</mark> to have on the team!',
+            author: 'Emma Lewis',
+            role: 'Freelance Senior Front End Developer',
+            photo: 'emma-lewis.jpg'
+        },
+        {
             quote: 'Mike is a top developer! <mark>Highly skilled, very knowledge, methodical and a genuinely nice guy</mark> - He is a very well rounded developer and has great attitude to life, learning and new technologies. Mike was <mark>a great mentor</mark> to me, encouraging me to push myself whilst offering great support and <mark>brilliant problem solving skills</mark> and techniques. I can highly recommend Mike for all things web related!',
             author: 'Luke Zammit',
             role: 'Front End/UI Developer at Macmillan',
