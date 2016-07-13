@@ -1,10 +1,14 @@
 export default function(func) {
     return () => {
-        if (wait) return
+        let wait
 
-        var wait = true
-        var args = arguments
-        var context = this
+        if (wait) {
+            return
+        }
+
+        wait = true
+        let args = arguments
+        let context = this
 
         window.requestAnimationFrame(() => {
             wait = false

@@ -9,7 +9,9 @@ const app = express()
 const isDevelopment = app.get('env') !== 'production'
 
 // Server assets statically in development
-if (isDevelopment) app.use(express.static(__dirname + '/public'))
+if (isDevelopment) {
+    app.use(express.static(__dirname + '/public'))
+}
 
 // Render and serve React
 app.get('/', (req, res) => {
@@ -39,7 +41,7 @@ app.get('/', (req, res) => {
                 <link rel="mask-icon" href="favicon.svg" color="#111111" />
                 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css" />
                 <link href="/css/app.css" rel="stylesheet" type="text/css" />
-                ${isDevelopment? '' : googleTagManager }
+                ${isDevelopment ? '' : googleTagManager }
                 <script>window.__initialData = ${initialData}</script>
             </head>
             <body>

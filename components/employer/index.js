@@ -7,17 +7,17 @@ export default class Employer extends Component {
         var employer = this.props
 
         let startMoment = moment(employer.startDate)
-        let endMoment = employer.endDate? moment(employer.endDate) : moment()
+        let endMoment = employer.endDate ? moment(employer.endDate) : moment()
 
         let years = endMoment.diff(startMoment, 'years')
         endMoment.subtract(years, 'years')
         let months = endMoment.diff(startMoment, 'months')
         let duration = []
         if (years) {
-            duration.push(years + ' year' + (years === 1? '' : 's'))
+            duration.push(years + ' year' + (years === 1 ? '' : 's'))
         }
         if (months) {
-            duration.push(months + ' month' + (months === 1? '' : 's'))
+            duration.push(months + ' month' + (months === 1 ? '' : 's'))
         }
 
         return (
@@ -26,7 +26,7 @@ export default class Employer extends Component {
                     <img src={'/images/employers/' + employer.logo + '.svg'} className="employer__logo" alt={employer.name} />
                     <h2 className="employer__name">{employer.name}</h2>
                     <p className="employer__when">
-                        {startMoment.format('MMM YY')} - {employer.endDate? endMoment.format('MMM YY') : 'Present'}
+                        {startMoment.format('MMM YY')} - {employer.endDate ? endMoment.format('MMM YY') : 'Present'}
                         <span className="employer__duration">{duration.join(', ')}</span>
                     </p>
                 </header>

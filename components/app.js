@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Project              from './project'
 import Header               from './header'
 import Section              from './section'
@@ -9,25 +9,25 @@ import Employer             from './employer'
 import Clients              from './clients'
 import moment               from 'moment'
 
-moment.locale('en', {
+moment.updateLocale('en', {
     relativeTime : {
-        future: "in %s",
-        past:   "%s ago",
-        s:  "seconds",
-        m:  "a minute",
-        mm: "%d minutes",
-        h:  "an hour",
-        hh: "%d hours",
-        d:  "1 day",
-        dd: "%d days",
-        M:  "1 month",
-        MM: "%d months",
-        y:  "1 year",
-        yy: "%d years"
+        future: 'in %s',
+        past:   '%s ago',
+        s:  'seconds',
+        m:  'a minute',
+        mm: '%d minutes',
+        h:  'an hour',
+        hh: '%d hours',
+        d:  '1 day',
+        dd: '%d days',
+        M:  '1 month',
+        MM: '%d months',
+        y:  '1 year',
+        yy: '%d years'
     }
 })
 
-export default class App extends Component {
+class App extends Component {
     componentDidMount() {
         document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, 'js')
     }
@@ -61,3 +61,12 @@ export default class App extends Component {
         )
     }
 }
+
+App.propTypes = {
+    projects: PropTypes.array.isRequired,
+    recommendations: PropTypes.array.isRequired,
+    employers: PropTypes.array.isRequired,
+    clients: PropTypes.array.isRequired
+}
+
+export default App

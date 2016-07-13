@@ -1,15 +1,22 @@
-import React, { Component } from 'react'
+import React, { PropTypes } from 'react'
 
-export default class Browser extends Component {
-    render() {
-        let browser = this.props
+const Browser = ({ alt, height, url, width }) =>
+    <figure className="browser">
+        <div className="browser__content">
+            <img src={`/images/${url}`} alt={alt} width={width} height={height} className="browser__image" />
+        </div>
+    </figure>
 
-        return (
-            <figure className="browser">
-                <div className="browser__content">
-                    <img src={'/images/' + browser.url} alt={browser.alt} width={browser.width | 620} height={browser.height | 400} className="browser__image" />
-                </div>
-            </figure>
-        )
-    }
+Browser.propTypes = {
+    alt: PropTypes.string.isRequired,
+    height: PropTypes.number.isRequired,
+    url: PropTypes.string.isRequired,
+    width: PropTypes.number.isRequired
 }
+
+Browser.defaultProps = {
+    height: 400,
+    width: 620
+}
+
+export default Browser

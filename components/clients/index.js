@@ -1,19 +1,12 @@
-import React, { Component } from 'react'
+import React, { PropTypes } from 'react'
 
-export default class Clients extends Component {
-    render() {
-        var clients = this.props.items.map((client, index) => {
-            return (
-                <li key={index} className="clients__item">
-                    <img src={'/images/clients/' + client.logo + '.svg'} alt={client.name} className="clients__image" />
-                </li>
-            )
-        })
+const Clients = ({ items }) =>
+    <ul className="clients">{items.map((client, index) =>
+        <li key={index} className="clients__item"><img src={'/images/clients/' + client.logo + '.svg'} alt={client.name} className="clients__image" /></li>
+    )}</ul>
 
-        return (
-            <ul className="clients">
-                {clients}
-            </ul>
-        )
-    }
+Clients.propTypes = {
+    items: PropTypes.array.isRequired
 }
+
+export default Clients

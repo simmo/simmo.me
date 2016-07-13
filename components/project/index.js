@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Browser from '../browser'
 import throttle from '../../javascript/utils/throttle'
 import widowRemover from '../../javascript/utils/widow-remover'
 import Cta from '../cta'
 
-export default class Project extends Component {
-    _removeScrollListener = () => window.removeEventListener('scroll', this.scrollListener)
+class Project extends Component {
+    _removeScrollListener() {
+        window.removeEventListener('scroll', this.scrollListener)
+    }
 
-    componentDidMount() {
-        this.scrollListener = throttle((event) => {
+    _addScrollListener() {
+        this.scrollListener = throttle(() => {
             let halfViewport = window.innerHeight * 0.6
             let { top: elementTop } = this.wrapper.getBoundingClientRect()
 
@@ -20,8 +22,10 @@ export default class Project extends Component {
         })
 
         window.addEventListener('scroll', this.scrollListener)
+    }
 
-        this.scrollListener()
+    componentDidMount() {
+        this._addScrollListener()
     }
 
     componentWillUnmount() {
@@ -29,24 +33,31 @@ export default class Project extends Component {
     }
 
     render() {
-        const project = this.props
-        const cta = {
-            url: project.url,
-            text: project.cta? project.cta : project.name
-        }
+        const { cta, description, employer, image, name, url } = this.props
 
         return (
             <article className="project" ref={(el) => this.wrapper = el}>
                 <header className="project__primary">
-                    <h1 className="project__name">{project.name}</h1>
-                    <h2 className="project__agency">{project.employer}</h2>
-                    <p className="project__description">{widowRemover(project.description)}</p>
-                    <p className="project__cta"><Cta {...cta} /></p>
+                    <h1 className="project__name">{name}</h1>
+                    <h2 className="project__agency">{employer}</h2>
+                    <p className="project__description">{widowRemover(description)}</p>
+                    <p className="project__cta"><Cta text={cta || name} url={url} /></p>
                 </header>
                 <div className="project__secondary">
-                    <Browser {...project.image} alt={project.name} />
+                    <Browser {...image} alt={name} />
                 </div>
             </article>
         )
     }
 }
+
+Project.propTypes = {
+    cta: PropTypes.string,
+    description: PropTypes.string.isRequired,
+    employer: PropTypes.string.isRequired,
+    image: PropTypes.object.isRequired,
+    name: PropTypes.string.isRequired,
+    url: PropTypes.string
+}
+
+export default Project

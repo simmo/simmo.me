@@ -14,7 +14,7 @@ export default {
         },
         {
             name: 'BBC: Audio/Visual',
-            url: false,
+            url: null,
             employer: 'Zone',
             description: 'Building high fidelity, next generation, HTML5 audio/video prototypes as well as User Interface/User Experience consultancy for the BBC\'s AVKX team.',
             image: {
