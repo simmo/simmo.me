@@ -1,6 +1,17 @@
 export default {
     projects: [
         {
+            name: 'South West Trains',
+            url: 'https://www.southwesttrains.co.uk/',
+            employer: 'Zone',
+            description: 'Full rebuild of the content site and booking engine for journeys, season and car parking tickets. The build uses a custom, component driven front-end that is built shared between multiple back-end applications (.NET MVC and EPiServer).',
+            image: {
+                url: 'south-west-trains.jpg',
+                width: 700,
+                height: 460
+            }
+        },
+        {
             name: 'Virgin: Pitch to Rich',
             url: 'http://www.virginmediabusiness.co.uk/pitch-to-rich',
             employer: 'Zone',
@@ -86,6 +97,12 @@ export default {
             author: 'Amy Willoughby',
             role: 'Senior Designer at SapientNitro',
             photo: 'amy-willoughby.jpg'
+        },
+        {
+            quote: 'I worked on a project that Mike was <mark>Tech Leading</mark> on and it was a delight! He is <mark>extremely knowledgeable</mark> and a <mark>very competent developer</mark>. He pays <mark>high attention to detail</mark> and is a <mark>great person to discuss ideas/approach with</mark>. He <mark>communicated well</mark> with all of the <mark>cross-disciplinary team</mark> and protected me from a lot of the project admin. Also he\'s a very <mark>lovely person</mark> to have on the team!',
+            author: 'Emma Lewis',
+            role: 'Freelance Senior Front End Developer',
+            photo: 'emma-lewis.jpg'
         },
         {
             quote: 'Mike is a top developer! <mark>Highly skilled, very knowledge, methodical and a genuinely nice guy</mark> - He is a very well rounded developer and has great attitude to life, learning and new technologies. Mike was <mark>a great mentor</mark> to me, encouraging me to push myself whilst offering great support and <mark>brilliant problem solving skills</mark> and techniques. I can highly recommend Mike for all things web related!',
@@ -218,6 +235,7 @@ export default {
             endDate: null,
             position: 'Senior front-end developer',
             achievements: [
+                'Front-end tech lead for South West Trains',
                 'Front-end integration with .NET frameworks',
                 'Consultant for BBC Audio/Visual team',
                 'Line management and team support',
