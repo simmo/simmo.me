@@ -1,6 +1,17 @@
 export default {
     projects: [
         {
+            name: 'South West Trains',
+            url: 'https://www.southwesttrains.co.uk/',
+            employer: 'Zone',
+            description: 'Full rebuild of the content site and booking engine for journeys, season and car parking tickets. The build uses a custom, component driven front-end that is built shared between multiple back-end applications (.NET MVC and EPiServer).',
+            image: {
+                url: 'south-west-trains.jpg',
+                width: 700,
+                height: 460
+            }
+        },
+        {
             name: 'Virgin: Pitch to Rich',
             url: 'http://www.virginmediabusiness.co.uk/pitch-to-rich',
             employer: 'Zone',
@@ -224,6 +235,7 @@ export default {
             endDate: null,
             position: 'Senior front-end developer',
             achievements: [
+                'Front-end tech lead for South West Trains',
                 'Front-end integration with .NET frameworks',
                 'Consultant for BBC Audio/Visual team',
                 'Line management and team support',
