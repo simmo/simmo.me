@@ -8,11 +8,10 @@ export default class Employer extends Component {
 
         let startMoment = moment(employer.startDate)
         let endMoment = employer.endDate ? moment(employer.endDate) : moment()
-
         let years = endMoment.diff(startMoment, 'years')
-        endMoment.subtract(years, 'years')
-        let months = endMoment.diff(startMoment, 'months')
+        let months = endMoment.diff(startMoment, 'months') - (years * 12)
         let duration = []
+
         if (years) {
             duration.push(years + ' year' + (years === 1 ? '' : 's'))
         }

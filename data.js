@@ -93,21 +93,21 @@ export default {
     ],
     recommendations: [
         {
-            quote: 'Mike is an encouraging team mate and <mark>fearlessly forward thinking</mark>. He has a <mark>great eye for detail</mark>, a <mark>good understanding of design</mark> and more importantly, <mark>Mike builds websites that work well</mark>! It\'s a pleasure to work with him.',
-            author: 'Amy Willoughby',
-            role: 'Senior Designer at SapientNitro',
-            photo: 'amy-willoughby.jpg'
-        },
-        {
             quote: 'I worked on a project that Mike was <mark>Tech Leading</mark> on and it was a delight! He is <mark>extremely knowledgeable</mark> and a <mark>very competent developer</mark>. He pays <mark>high attention to detail</mark> and is a <mark>great person to discuss ideas/approach with</mark>. He <mark>communicated well</mark> with all of the <mark>cross-disciplinary team</mark> and protected me from a lot of the project admin. Also he\'s a very <mark>lovely person</mark> to have on the team!',
             author: 'Emma Lewis',
             role: 'Freelance Senior Front End Developer',
             photo: 'emma-lewis.jpg'
         },
         {
+            quote: 'Mike is an encouraging team mate and <mark>fearlessly forward thinking</mark>. He has a <mark>great eye for detail</mark>, a <mark>good understanding of design</mark> and more importantly, <mark>Mike builds websites that work well</mark>! It\'s a pleasure to work with him.',
+            author: 'Amy Willoughby',
+            role: 'Senior Designer at SapientNitro',
+            photo: 'amy-willoughby.jpg'
+        },
+        {
             quote: 'Mike is a top developer! <mark>Highly skilled, very knowledge, methodical and a genuinely nice guy</mark> - He is a very well rounded developer and has great attitude to life, learning and new technologies. Mike was <mark>a great mentor</mark> to me, encouraging me to push myself whilst offering great support and <mark>brilliant problem solving skills</mark> and techniques. I can highly recommend Mike for all things web related!',
             author: 'Luke Zammit',
-            role: 'Front End/UI Developer at Macmillan',
+            role: 'Freelance Front End/UI Developer',
             photo: 'luke-zammit.jpg'
         },
         {
@@ -125,13 +125,13 @@ export default {
         {
             quote: 'Mike is a <mark>fantastic developer</mark>. When we worked together at Caspian Media, he was always able to <mark>fix any problem</mark> we may have had with our content management system. I\'m a non-techie, but Mike was always <mark>patient</mark> and <mark>happy to help</mark>. I would not hesitate to <mark>recommend him to anyone</mark>, and certainly hope to work with him again in the future.',
             author: 'Jason Hesse',
-            role: 'Freelance business journalist and copywriter',
+            role: 'Head of publications and content at the French Chamber of Great Britain',
             photo: 'jason-hesse.jpg'
         },
         {
             quote: 'Mike is <mark>undoubtedly very good at his job</mark> and I would not hesitate to recommend him to anyone. I worked with Mike on a number of projects at Caspian Media and found him to be <mark>efficient</mark>, <mark>reliable</mark> and <mark>easy to work with</mark>.',
             author: 'Aneliese Seaman',
-            role: 'Marketing Manager at Financial Times',
+            role: 'Senior Marketing Manager at Financial Times',
             photo: 'aneliese-seaman.jpg'
         }
     ],
@@ -231,7 +231,7 @@ export default {
         {
             name: 'Zone Ltd',
             logo: 'zone',
-            startDate: '2014-09-29',
+            startDate: '2014-09-29 00:00:00',
             endDate: null,
             position: 'Senior front-end developer',
             achievements: [
@@ -248,8 +248,8 @@ export default {
         {
             name: 'Caspian Media Ltd',
             logo: 'caspian',
-            startDate: '2009-03-16',
-            endDate: '2014-09-26',
+            startDate: '2009-03-16 00:00:00',
+            endDate: '2014-09-26 00:00:00',
             position: 'Lead developer',
             achievements: [
                 'Designed and built a custom CMS and framework that has been in use for over 5 years and manages Caspian\'s web portfolio',
@@ -264,8 +264,8 @@ export default {
         {
             name: 'Sainsbury\'s Plc',
             logo: 'sainsburys',
-            startDate: '2002-08-01',
-            endDate: '2009-03-14',
+            startDate: '2002-08-01 00:00:00',
+            endDate: '2009-03-14 00:00:00',
             position: 'Online co-ordinator',
             achievements: [
                 'Learning how to manage a large, diverse, team with different wants and needs',
