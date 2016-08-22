@@ -31,7 +31,7 @@
         margin-bottom: times($gutter, 1.5);
 
         text-align: center;
-        
+
         @media (min-width: $breakpoint-1) {
             padding-top: times($gutter, 1);
             padding-right: times($gutter, 1.5);
@@ -99,5 +99,5 @@
 
     &__cta {
         margin-top: 2.5rem;
-    }    
+    }
 }

@@ -1,122 +1,201 @@
 'use strict'
 
-var plan  = require('flightplan')
-var join = require('path').join
+var path                = require('path')
+var plan                = require('flightplan')
 
-const application = 'simmo.me'
-const deployTo = join('/var/www', application)
-const repoUrl = 'https://github.com/simmo/simmo.me.git'
-const branch = 'master'
-const keepReleases = 3
-const releaseTimestamp = new Date().getTime().toString()
-const releasesPath = join(deployTo, 'releases')
-const sharedPath = join(deployTo, 'shared')
-const repoPath = join(deployTo, 'repo')
-const currentPath = join(deployTo, 'current')
-const releasePath = join(releasesPath, releaseTimestamp)
-const linkedDirs = ['node_modules']
+const application       = 'simmo.me'
+const deployTo          = path.join('/var', 'www', application)
+const repoUrl           = 'https://github.com/simmo/simmo.me.git'
+const branch            = 'master'
+const user              = 'root'
+const keepReleases      = 3
+const releaseTimestamp  = new Date().getTime().toString()
+const releasesPath      = path.join(deployTo, 'releases')
+const sharedPath        = path.join(deployTo, 'shared')
+const repoPath          = path.join(deployTo, 'repo')
+const currentPath       = path.join(deployTo, 'current')
+const deploymentLogPath = path.join(deployTo, 'deployments.log')
+const releasePath       = path.join(releasesPath, releaseTimestamp)
+const linkedDirs        = []
+const copiedDirs        = ['node_modules']
+
+var revision            = null
+var localUser           = null
 
 var envs = {
-	production: [
-		{
-		    host: application,
-		    username: 'xxxx',
-		    agent: process.env.SSH_AUTH_SOCK
-		}
-	]
+    production: {
+        host: application,
+        username: user,
+        agent: process.env.SSH_AUTH_SOCK
+    }
 }
 
 var deploy = {
-	check: (transport) => {
-	    transport.log('Checking environment...')
+    prep: (transport) => {
+        localUser = transport.exec(`whoami`).stdout.trim()
+    },
+    check: (transport) => {
+        transport.log('Checking environment...')
+        transport.silent()
 
-	    // 1) Check git is installed
-		transport.debug('Git')
-		transport.exec('which git', { silent: true })
+        // 1) Check git is installed
+        transport.exec('which git')
 
-		// 2) Check remote repo exists
-		transport.exec(`git ls-remote --heads ${repoUrl}`, { silent: true })
+        // 2) Check remote repo exists
+        transport.exec(`git ls-remote --heads ${repoUrl}`)
 
-		// 3) Check releases and shared directories exist
-		transport.exec(`mkdir -p ${releasesPath} ${sharedPath}`)
+        // 3) Check releases and shared directories exist
+        transport.exec(`mkdir -p ${releasesPath} ${sharedPath}`)
 
-		// 4) Check shared directories exist
-		let dirs = linkedDirs.map(dir => join(sharedPath, dir)).join()
-		transport.exec(`mkdir -p ${dirs}`)
+        // 4) Check shared directories exist
+        if (linkedDirs.length) {
+            let dirs = linkedDirs.map(dir => path.join(sharedPath, dir)).join()
 
-		// 5) Check we have a repo
-		if (transport.exec(`[ -f ${join(repoPath, 'HEAD')} ]`, { failsafe: true, silent: true }).code === 0) {
-			// Yes: Update
-			transport.with(`cd ${repoPath}`, () => {
-				transport.exec(`git remote update`, { silent: true })
-			})
-		} else {
-			// No: Clone
-			transport.exec(`git clone --mirror ${repoUrl} ${repoPath}`)
-		}
+            transport.exec(`mkdir -p ${dirs}`)
+        }
 
-		// 6) Check we have write permissions
-		// @todo
+        // 5) Check we have a repo
+        if (transport.exec(`[ -f ${path.join(repoPath, 'HEAD')} ]`, { failsafe: true }).code === 0) {
+            // Yes: Update
+            transport.with(`cd ${repoPath}`, () => {
+                transport.exec(`git remote update`)
+            })
+        } else {
+            // No: Clone
+            transport.exec(`git clone --mirror ${repoUrl} ${repoPath}`)
+        }
 
-		// 7) Create log file
-		// @todo
-	},
-	createRelease: (transport) => {
-	    // Create the release
-	    transport.log('Create release...')
+        // 6) Check we have write permissions
+        // @todo
+    },
+    create: (transport) => {
+        transport.log('Creating release...')
+        transport.silent()
 
-	    // 1) Create release folder
-	    transport.exec(`mkdir -p ${releasePath}`)
+        // 1) Create release folder
+        transport.exec(`mkdir -p ${releasePath}`)
 
-	    // 2) Bundle repo, copy to release and uncompress contents
-		transport.exec(`git -C ${repoPath} archive ${branch} | tar -x -f - -C ${releasePath}`)
+        // 2) Bundle repo, copy to release and uncompress contents
+        transport.exec(`git -C ${repoPath} archive ${branch} | tar -x -f - -C ${releasePath}`)
 
-		// 3) Create symlinked directories
-		let dirs = linkedDirs.map(dir => join(releasePath, dir)).join()
-		transport.exec(`mkdir -p ${dirs}`)
+        if (copiedDirs.length) {
+            copiedDirs.forEach(dir => {
+                let target = path.join(releasePath, dir)
+                let source = path.join(currentPath, dir)
 
-		linkedDirs.forEach(dir => {
-			let target = join(releasePath, dir)
-			let source = join(sharedPath, dir)
-			if (transport.exec(`[ -d ${target} ]`, { failsafe: true, silent: true }).code === 0) {
-				transport.exec(`rm -rf ${target}`)
-			}
-            transport.exec(`ln -s ${source} ${target}`)
-		})
+                // Check if dir exists in current
+                if (transport.exec(`[ -d ${source} ]`, { failsafe: true }).code === 0) {
+                    // Yes: Copy dir to new release
+                    transport.exec(`cp -avr ${source} ${releasePath}`)
+                } else {
+                    // No: Make an empty directory in the new release
+                    transport.exec(`mkdir -p ${target}`)
+                }
+            })
+        }
 
-		// 4) Run npm install and build
-		transport.with(`cd ${releasePath}`, () => {
-			transport.exec(`NODE_ENV=production npm install`, { silent: true })
-			transport.exec(`NODE_ENV=production npm run build`, { silent: true })
-		})
-	},
-	publish: (transport) => {
-	    transport.log('Publishing release...')
+        // 3) Create symlinked directories
+        if (linkedDirs.length) {
+            let dirs = linkedDirs.map(dir => path.join(releasePath, dir)).join()
 
-	    // 1) Update current symlink to new release
-		transport.exec(`ln -sfn ${releasePath} ${currentPath}`)
+            transport.exec(`mkdir -p ${dirs}`)
 
-		// 2) Restart node process
-		transport.exec(`NODE_ENV=production forever restart ${join(currentPath, 'index.js')} || NODE_ENV=production forever start --spinSleepTime 10000 ${join(currentPath, 'index.js')}`, { silent: true })
-	},
-	cleanup: (transport) => {
-	    transport.log('Cleaning up old releases...')
+            linkedDirs.forEach(dir => {
+                let target = path.join(releasePath, dir)
+                let source = path.join(sharedPath, dir)
 
-	    // 1) Only remove the number of releases specified by keepReleases
-	    var fetchReleases = transport.exec(`ls -r ${releasesPath}`, { silent: true })
-	    if (fetchReleases.code === 0) {
-	    	var releases = fetchReleases.stdout.trim().split('\n').slice(keepReleases)
-	    	if (releases.length) {
-	    		transport.log(`Removing ${releases.length} release(s)...`)
-		    	transport.with(`cd ${releasesPath}`, () => transport.exec(`rm -rf ${releases.join(' ')}`))
-		    }
-	    }
-	}
+                if (transport.exec(`[ -d ${target} ]`, { failsafe: true }).code === 0) {
+                    transport.exec(`rm -rf ${target}`)
+                }
+
+                transport.exec(`ln -s ${source} ${target}`)
+            })
+        }
+
+        // 4) Fetch revision number
+        transport.with(`cd ${repoPath}`, () => {
+            let fetchReleaseSha = transport.exec(`git rev-list --max-count=1 --abbrev-commit --abbrev=12 ${branch}`)
+
+            revision = fetchReleaseSha.code === 0 ? fetchReleaseSha.stdout.trim() : 'unknown'
+        })
+
+        // 5) Run npm install and build
+        transport.with(`cd ${releasePath}; export NODE_ENV=${transport._context.target}`, () => {
+            transport.exec(`npm prune`, { silent: false })
+            transport.exec(`npm install`, { silent: false })
+            transport.exec(`npm run build`, { silent: false })
+        })
+    },
+    publish: (transport) => {
+        transport.log('Publishing release...')
+        transport.silent()
+
+        // 1) Update current symlink to new release
+        transport.exec(`ln -sfn ${releasePath} ${currentPath}`)
+
+        // 2) Update log
+        transport.exec(`printf "[%s %s] Branch %s (at %s) deployed as release %s by %s\n" $(date '+%Y-%m-%d %H:%M:%S') "${branch}" "${revision}" "${releaseTimestamp}" "${localUser}" >> ${deploymentLogPath}`)
+    },
+    restart: (transport) => {
+        // 1) Restart node process
+        transport.with(`export NODE_ENV=${transport._context.target}`, () => {
+            if (transport.exec(`forever restart ${path.join(currentPath, 'index.js')}`).code !== 0) {
+                transport.exec(`forever start -c nodejs --spinSleepTime 10000 ${path.join(currentPath, 'index.js')}`)
+            }
+        })
+    },
+    cleanup: (transport) => {
+        transport.log('Cleaning up old releases...')
+        transport.silent()
+
+        // 1) Only remove the number of releases specified by keepReleases
+        let fetchReleases = transport.exec(`ls -r ${releasesPath}`)
+
+        if (fetchReleases.code === 0) {
+            let releases = fetchReleases.stdout.trim().split('\n').slice(keepReleases)
+
+            if (releases.length) {
+                transport.log(`Removing ${releases.length} release(s)...`)
+                transport.with(`cd ${releasesPath}`, () => transport.exec(`rm -rf ${releases.join(' ')}`))
+            }
+        }
+    },
+    rollback: (transport) => {
+        transport.log('Rolling back to previous release...')
+        transport.silent()
+
+        let fetchReleases = transport.exec(`ls -r ${releasesPath}`)
+        let releases = fetchReleases.stdout.trim().split('\n')
+        let currentReleasePath = transport.exec(`readlink -f ${currentPath}`).stdout.trim()
+        let currentReleaseDir = path.basename(currentReleasePath)
+
+        release = releases[releases.indexOf(currentReleaseDir) + 1]
+
+        let previousRelease = path.join(releasesPath, release)
+
+        // If we have a previous release
+        if (previousRelease) {
+            console.log(releases)
+            console.log(currentReleasePath)
+
+            // 1) Point current synlink to previous release
+            transport.log(`ln -sfn ${previousRelease} ${currentPath}`)
+
+            // 2) Update log
+            transport.log(`printf "[%s %s] %{%s} rolled back to release %{release}\n" $(date '+%Y-%m-%d %H:%M:%S') "${localUser}" "${release}" >> ${deploymentLogPath}`)
+        }
+    }
 }
 
 plan.target('production', envs.production)
 
+plan.local('deploy', deploy.prep)
 plan.remote('deploy', deploy.check)
-plan.remote('deploy', deploy.createRelease)
+plan.remote('deploy', deploy.create)
 plan.remote('deploy', deploy.publish)
+plan.remote('deploy', deploy.restart)
 plan.remote('deploy', deploy.cleanup)
+
+plan.local('rollback', deploy.prep)
+plan.remote('rollback', deploy.rollback)
+plan.remote('rollback', deploy.restart)

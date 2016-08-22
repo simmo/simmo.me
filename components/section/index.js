@@ -1,17 +1,25 @@
-import React, { Component } from 'react'
+import React, { PropTypes } from 'react'
 import classes from 'classnames'
 
-export default class Section extends Component {
-    render() {
-        return (
-            <section className={classes('section', 'section--' + this.props.className,  { 'section--contained': !!this.props.contained })}>
-            	<header className="section__header">
-            		<h1 className="section__name">{this.props.name}</h1>
-            	</header>
-                <div className="section__content">
-                	{this.props.children}
-                </div>
-            </section>
-        )
-    }
+const Section = ({ className, contained, name, children }) =>
+    <section className={classes('section', `section--${className}`,  { 'section--contained': !!contained })}>
+        <header className="section__header">
+            <h1 className="section__name">{name}</h1>
+        </header>
+        <div className="section__content">
+            {children}
+        </div>
+    </section>
+
+Section.propTypes = {
+    className: PropTypes.string.isRequired,
+    contained: PropTypes.bool.isRequired,
+    children: PropTypes.any,
+    name: PropTypes.string.isRequired
 }
+
+Section.defaultProps = {
+    contained: false
+}
+
+export default Section
