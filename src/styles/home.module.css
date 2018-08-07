@@ -1,0 +1,26 @@
+@import './_variables.css';
+
+.home {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.logo {
+  margin-bottom: 0.25em;
+}
+
+.intro {
+  color: var(--secondary-colour);
+  font-family: 'Bitter', system-ui;
+  max-width: 25em;
+}
+
+.intro p {
+  margin: 0;
+}
+
+.intro p + p {
+  margin-top: 1em;
+}

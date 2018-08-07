@@ -1,0 +1,35 @@
+@import './_variables.css';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--tertiary-colour);
+  font-family: 'Montserrat', system-ui;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+p a {
+  border-bottom: 2px solid transparent;
+  color: var(--primary-colour);
+  text-decoration: none;
+  transition: border-bottom-color ease-out 0.2s;
+}
+
+a:hover,
+a:focus {
+  border-bottom-color: currentColor;
+}
+
+svg {
+  display: block;
+  fill: currentColor;
+  width: 100%;
+}
