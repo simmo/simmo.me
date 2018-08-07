@@ -1,0 +1,12 @@
+@import './_variables.css';
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: -0.07em;
+}
+
+.dot {
+  color: var(--primary-colour);
+  margin-left: 0.1em;
+}
