@@ -12,6 +12,13 @@ body {
   padding: 0;
 }
 
+html,
+body,
+:global(#___gatsby),
+:global(#___gatsby > div) {
+  height: 100%;
+}
+
 h1 {
   margin: 0;
 }
