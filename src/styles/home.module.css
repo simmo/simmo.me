@@ -2,8 +2,15 @@
 
 .home {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   flex-direction: column;
+  padding-bottom: 5vh;
+}
+
+@media (min-height: 640px) {
+  .home {
+    justify-content: center;
+  }
 }
 
 .logo {
