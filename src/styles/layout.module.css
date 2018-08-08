@@ -7,14 +7,15 @@
     [full-start] minmax(0, 1fr)
     [main-start] minmax(0, 960px) [main-end]
     minmax(0, 1fr) [full-end];
+  min-height: 100%;
 }
 
 .grid > * {
   grid-column: main;
+  padding: var(--gutter) 0;
 }
 
 .grid > .full {
   background-color: #eee;
-  padding: var(--gutter);
   grid-column: full;
 }
