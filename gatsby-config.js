@@ -33,6 +33,14 @@ module.exports = {
         id: process.env.GOOGLE_TAG_MANAGER_ID,
       },
     },
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        google: {
+          families: ['Bitter', 'Montserrat:400,700'],
+        },
+      },
+    },
   ],
 }
 
