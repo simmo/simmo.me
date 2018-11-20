@@ -3,10 +3,7 @@
   "description": "Personal website, CV and portfolio of Mike Simmonds.",
   "repository": "github:simmo/simmo.me",
   "private": true,
-  "author": {
-    "name": "Mike Simmonds",
-    "url": "https://simmo.me"
-  },
+  "author": "Mike Simmonds (https://simmo.me)",
   "version": "3.0.0",
   "license": "MIT",
   "scripts": {

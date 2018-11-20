@@ -31,17 +31,20 @@ const Layout = ({ children }) => (
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="apple-mobile-web-app-title" content="simmo.me" />
           <meta name="application-name" content="simmo.me" />
+          <meta
+            name="google-site-verification"
+            content="GbkERB2aLUOjt7IgBkrHpE61G7awq9zVYAu7ODXAfiA"
+          />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Bitter|Montserrat:400,700"
+            media="screen"
           />
           <link rel="apple-touch-icon" href={favIconApple} />
           <link rel="icon" href={favIcon} />
           <link rel="mask-icon" href={favIconMask} color="#111111" />
         </Helmet>
-        <main className={styles.grid}>
-          {children}
-        </main>
+        <main className={styles.grid}>{children}</main>
       </Fragment>
     )}
   />
