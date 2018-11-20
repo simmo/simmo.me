@@ -30,8 +30,8 @@ p a {
   transition: border-bottom-color ease-out 0.2s;
 }
 
-a:hover,
-a:focus {
+p a:hover,
+p a:focus {
   border-bottom-color: currentColor;
 }
 

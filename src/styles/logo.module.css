@@ -6,7 +6,8 @@
   letter-spacing: -0.07em;
 }
 
-.dot {
+.logo:after {
   color: var(--primary-colour);
+  content: '.';
   margin-left: 0.1em;
 }

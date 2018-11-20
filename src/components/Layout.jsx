@@ -38,10 +38,9 @@ const Layout = ({ children }) => (
           <link rel="apple-touch-icon" href={favIconApple} />
           <link rel="icon" href={favIcon} />
           <link rel="mask-icon" href={favIconMask} color="#111111" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
         </Helmet>
-        <main className={styles.grid}>
-          {children}
-        </main>
+        <main className={styles.grid}>{children}</main>
       </Fragment>
     )}
   />
