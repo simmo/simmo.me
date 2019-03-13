@@ -2,7 +2,7 @@ require('dotenv').config()
 
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://simmo.me',
+    domain: 'simmo.me',
     title: 'Mike Simmonds - Lead front-end developer',
     description: 'Lead front-end developer, living in Sussex and working in London, UK.',
     keywords: [

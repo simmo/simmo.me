@@ -9,7 +9,9 @@ import favIconMask from '../images/favicon.svg'
 import favIconApple from '../images/apple-touch-icon.png'
 
 export default function Layout({ children }) {
-  const { title, description, keywords } = useSiteMeta()
+  const {
+    domain, title, description, keywords,
+  } = useSiteMeta()
 
   return (
     <>
@@ -22,8 +24,8 @@ export default function Layout({ children }) {
             { name: 'description', content: description },
             { name: 'keywords', content: keywords.join() },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { vname: 'apple-mobile-web-app-title', content: 'simmo.me' },
-            { name: 'application-name', content: 'simmo.me' },
+            { name: 'apple-mobile-web-app-title', content: domain },
+            { name: 'application-name', content: domain },
             {
               name: 'google-site-verification',
               content: 'GbkERB2aLUOjt7IgBkrHpE61G7awq9zVYAu7ODXAfiA',

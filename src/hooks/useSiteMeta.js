@@ -8,6 +8,7 @@ export default function useSiteMeta() {
       query {
         site {
           siteMetadata {
+            domain
             title
             description
             keywords
