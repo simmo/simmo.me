@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "dotenv": "^6.1.0",
-    "gatsby": "2.0.53",
+    "dotenv": "^7.0.0",
+    "gatsby": "2.1.31",
     "gatsby-plugin-google-tagmanager": "^2.0.6",
     "gatsby-plugin-react-helmet": "^3.0.2",
     "gatsby-plugin-web-font-loader": "^1.0.4",
