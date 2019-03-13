@@ -1,7 +1,7 @@
 @import './_variables.css';
 
 .logo {
-  font-size: 30px;
+  font-size: 2.2rem;
   font-weight: bold;
   letter-spacing: -0.07em;
 }
@@ -9,5 +9,4 @@
 .logo:after {
   color: var(--primary-colour);
   content: '.';
-  margin-left: 0.1em;
 }

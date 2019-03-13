@@ -6,7 +6,10 @@
 
 body {
   color: var(--tertiary-colour);
-  font-family: 'Montserrat', system-ui;
+  font-size: 18px;
+  font-family: 'Avenir Next', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
   line-height: 1.8;
   margin: 0;
   padding: 0;
