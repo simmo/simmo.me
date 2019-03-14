@@ -4,28 +4,10 @@ import Helmet from 'react-helmet'
 import { Global, css } from '@emotion/core'
 
 import useSiteMeta from '../hooks/useSiteMeta'
+import Grid from './Grid'
 import favIcon from '../images/favicon.ico'
 import favIconMask from '../images/favicon.svg'
 import favIconApple from '../images/apple-touch-icon.png'
-
-const grid = css`
-  display: grid;
-  grid-gap: var(--gutter);
-  grid-template-columns:
-    [full-start] minmax(0, 1fr)
-    [main-start] minmax(0, 1280px) [main-end]
-    minmax(0, 1fr) [full-end];
-  min-height: 100%;
-
-  & > * {
-    grid-column: main;
-    padding: var(--gutter) 0;
-  }
-
-  & > .full {
-    grid-column: full;
-  }
-`
 
 export default function Layout({ children }) {
   const {
@@ -123,7 +105,7 @@ export default function Layout({ children }) {
           ],
         }}
       />
-      <main css={grid}>{children}</main>
+      <Grid as="main">{children}</Grid>
     </>
   )
 }
