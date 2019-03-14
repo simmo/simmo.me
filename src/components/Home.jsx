@@ -1,17 +1,35 @@
 import React from 'react'
-
-import styles from '../styles/home.module.css'
+import { css } from '@emotion/core'
 
 import Logo from './Logo'
 import Social from './Social'
 
+const home = css`
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding-bottom: 5vh;
+
+  @media (min-height: 640px) {
+    justify-content: center;
+  }
+`
+
+const logo = css`
+  margin-bottom: 0.25em;
+`
+
+const intro = css`
+  max-width: 25em;
+`
+
 export default function Home() {
   return (
-    <div className={styles.home}>
-      <h1 className={styles.logo}>
+    <div css={home}>
+      <h1 css={logo}>
         <Logo />
       </h1>
-      <div className={styles.intro}>
+      <div css={intro}>
         <p>
           Hi, I’m Mike Simmonds, a UK based, Lead front-end developer living in Sussex, working in
           London.

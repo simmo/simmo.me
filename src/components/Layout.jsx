@@ -1,12 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import useSiteMeta from '../hooks/useSiteMeta'
-import styles from '../styles/layout.module.css'
+import { Global, css } from '@emotion/core'
 
+import useSiteMeta from '../hooks/useSiteMeta'
 import favIcon from '../images/favicon.ico'
 import favIconMask from '../images/favicon.svg'
 import favIconApple from '../images/apple-touch-icon.png'
+
+const grid = css`
+  display: grid;
+  grid-gap: var(--gutter);
+  grid-template-columns:
+    [full-start] minmax(0, 1fr)
+    [main-start] minmax(0, 1280px) [main-end]
+    minmax(0, 1fr) [full-end];
+  min-height: 100%;
+
+  & > * {
+    grid-column: main;
+    padding: var(--gutter) 0;
+  }
+
+  & > .full {
+    grid-column: full;
+  }
+`
 
 export default function Layout({ children }) {
   const {
@@ -15,6 +34,71 @@ export default function Layout({ children }) {
 
   return (
     <>
+      <Global
+        styles={css`
+          :root {
+            --gutter: 2rem;
+            --background-color: #fafafa;
+            --accent-colour: #00bcd4;
+            --primary-text-colour: #444;
+            --secondary-text-colour: #111;
+          }
+
+          * {
+            box-sizing: border-box;
+          }
+
+          body {
+            background-color: var(--background-color);
+            color: var(--primary-text-colour);
+            font-size: 18px;
+            font-family: 'Avenir Next', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+              Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+              'Segoe UI Symbol';
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+          }
+
+          html,
+          body,
+          #___gatsby,
+          #___gatsby > div {
+            height: 100%;
+          }
+
+          h1 {
+            margin: 0;
+          }
+
+          p {
+            margin: 0;
+          }
+
+          p + p {
+            margin-top: 1em;
+          }
+
+          p a {
+            border-bottom: 2px solid transparent;
+            color: var(--accent-colour);
+            font-weight: 500;
+            text-decoration: none;
+            transition: border-bottom-color ease-out 0.2s;
+          }
+
+          p a:hover,
+          p a:focus {
+            border-bottom-color: currentColor;
+          }
+
+          svg {
+            display: block;
+            fill: currentColor;
+            width: 100%;
+          }
+        `}
+      />
       <Helmet
         {...{
           defaultTitle: title,
@@ -39,7 +123,7 @@ export default function Layout({ children }) {
           ],
         }}
       />
-      <main className={styles.grid}>{children}</main>
+      <main css={grid}>{children}</main>
     </>
   )
 }
