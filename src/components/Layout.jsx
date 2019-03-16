@@ -1,18 +1,34 @@
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { Global, css } from '@emotion/core'
 
 import useSiteMeta from '../hooks/useSiteMeta'
+import useMediaQuery from '../hooks/useMediaQuery'
 import Grid from './Grid'
+import ThemeSwitcher from './ThemeSwitcher'
 import favIcon from '../images/favicon.ico'
 import favIconMask from '../images/favicon.svg'
 import favIconApple from '../images/apple-touch-icon.png'
+import useLocalStorage from '../hooks/useLocalStorage'
 
 export default function Layout({ children }) {
   const {
     domain, title, description, keywords,
   } = useSiteMeta()
+  const systemIsDark = useMediaQuery('(prefers-color-scheme: dark)')
+  const [preferDark, setPreferDark] = useLocalStorage('dark-mode')
+  const isDark = useMemo(() => (preferDark === null && systemIsDark) || preferDark, [
+    preferDark,
+    systemIsDark,
+  ])
+  const [backgroundColor, primaryTextColour] = useMemo(
+    () => (isDark ? ['#222', '#f9f9f9'] : ['#fafafa', '#222']),
+    [isDark],
+  )
+  const handleClick = useCallback(() => {
+    setPreferDark(!isDark)
+  }, [isDark])
 
   return (
     <>
@@ -20,14 +36,22 @@ export default function Layout({ children }) {
         styles={css`
           :root {
             --gutter: 2rem;
-            --background-color: #fafafa;
+            --background-color: ${backgroundColor};
             --accent-colour: #00bcd4;
-            --primary-text-colour: #444;
-            --secondary-text-colour: #111;
+            --primary-text-colour: ${primaryTextColour};
           }
 
           * {
             box-sizing: border-box;
+          }
+
+          *::before,
+          *::after {
+            box-sizing: inherit;
+          }
+
+          *:focus {
+            outline-color: var(--accent-colour);
           }
 
           body {
@@ -40,6 +64,7 @@ export default function Layout({ children }) {
             line-height: 1.8;
             margin: 0;
             padding: 0;
+            transition: background-color 0.2s, color 0.2s;
           }
 
           html,
@@ -62,7 +87,7 @@ export default function Layout({ children }) {
           }
 
           p a {
-            border-bottom: 2px solid transparent;
+            border-bottom: 2px solid;
             color: var(--accent-colour);
             font-weight: 500;
             text-decoration: none;
@@ -71,7 +96,7 @@ export default function Layout({ children }) {
 
           p a:hover,
           p a:focus {
-            border-bottom-color: currentColor;
+            border-bottom-color: transparent;
           }
 
           svg {
@@ -106,6 +131,15 @@ export default function Layout({ children }) {
         }}
       />
       <Grid as="main">{children}</Grid>
+      <ThemeSwitcher
+        onClick={handleClick}
+        isDark={isDark}
+        css={css`
+          position: absolute;
+          top: var(--gutter);
+          right: var(--gutter);
+        `}
+      />
     </>
   )
 }

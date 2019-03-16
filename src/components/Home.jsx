@@ -9,8 +9,10 @@ const home = css`
   justify-content: flex-end;
   flex-direction: column;
   padding-bottom: 5vh;
+  padding-right: 3rem;
+  max-width: 30rem;
 
-  @media (min-height: 640px) {
+  @media (min-width: 30em) {
     justify-content: center;
   }
 `
@@ -20,7 +22,7 @@ const logo = css`
 `
 
 const intro = css`
-  max-width: 25em;
+  opacity: 0.8;
 `
 
 export default function Home() {
