@@ -3,9 +3,7 @@ import {
 } from 'react'
 
 export default function useMediaQuery(query, fallback = false) {
-  const isSupported = useMemo(() => typeof window !== 'undefined' || !!window.matchMedia, [
-    window.matchMedia,
-  ])
+  const isSupported = useMemo(() => typeof window !== 'undefined' || !!window.matchMedia, [])
   const mediaQuery = useMemo(
     () => (isSupported ? window.matchMedia(query) : { matches: fallback }),
     [query, isSupported],
