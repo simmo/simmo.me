@@ -2,11 +2,12 @@ import {
   useCallback, useEffect, useState, useMemo,
 } from 'react'
 
+const isSupported = typeof window !== 'undefined' && window.matchMedia
+
 export default function useMediaQuery(query, fallback = false) {
-  const isSupported = useMemo(() => typeof window !== 'undefined' && window.matchMedia, [])
   const mediaQuery = useMemo(
     () => (isSupported ? window.matchMedia(query) : { matches: fallback }),
-    [query, isSupported],
+    [query],
   )
   const [state, setState] = useState(mediaQuery.matches)
   const handleChange = useCallback(
@@ -17,12 +18,12 @@ export default function useMediaQuery(query, fallback = false) {
   )
 
   useEffect(() => {
-    if (mediaQuery.addListener) {
+    if (isSupported) {
       mediaQuery.addListener(handleChange)
     }
 
     return () => {
-      if (mediaQuery.removeListener) {
+      if (isSupported) {
         mediaQuery.removeListener(handleChange)
       }
     }

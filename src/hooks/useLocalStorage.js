@@ -1,7 +1,15 @@
 import { useCallback, useState, useEffect } from 'react'
 
+const isSupported = typeof window !== 'undefined' && window.localStorage
+
 export default function useLocalStorage(key) {
-  const [state, setState] = useState(() => JSON.parse(localStorage.getItem(key)))
+  const [state, setState] = useState(() => {
+    if (isSupported) {
+      return JSON.parse(localStorage.getItem(key))
+    }
+
+    return null
+  })
   const handleStorage = useCallback((event) => {
     if ((event.isTrusted, event.key === key && event.oldValue !== event.newValue)) {
       setState(JSON.parse(event.newValue))
@@ -9,10 +17,14 @@ export default function useLocalStorage(key) {
   }, [])
 
   useEffect(() => {
-    window.addEventListener('storage', handleStorage)
+    if (isSupported) {
+      window.addEventListener('storage', handleStorage)
+    }
 
     return () => {
-      window.removeEventListener('storage', handleStorage)
+      if (isSupported) {
+        window.removeEventListener('storage', handleStorage)
+      }
     }
   }, [handleStorage])
 
