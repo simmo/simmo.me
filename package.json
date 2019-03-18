@@ -4,7 +4,7 @@
   "repository": "github:simmo/simmo.me",
   "private": true,
   "author": "Mike Simmonds (https://simmo.me)",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
