@@ -1,22 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
+import styled from '@emotion/styled'
+import { animated, useSpring } from 'react-spring'
 
 import { Moon, Sun } from './Icons'
-
-const button = css`
-  appearance: none;
-  background: none;
-  border: 0;
-  border-radius: 0;
-  color: inherit;
-  display: inline-block;
-  font: inherit;
-  margin: 0;
-  padding: 0;
-  line-height: 1;
-  outline: none;
-`
 
 const track = css`
   box-sizing: content-box;
@@ -24,14 +12,14 @@ const track = css`
   border-radius: 5rem;
   align-items: center;
   justify-content: space-around;
-  display: flex;
+  display: inline-flex;
   padding: 2px;
   position: relative;
   height: 1.5rem;
   width: 3.5rem;
 `
 
-const thumb = css`
+const Thumb = styled.span`
   display: block;
   background-color: #fff;
   border-radius: 100%;
@@ -40,13 +28,25 @@ const thumb = css`
   left: 2px;
   height: 1.5rem;
   width: 1.5rem;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
+`
 
-  *:focus & {
+const input = css`
+  appearance: none;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  width: 0;
+  height: 0;
+  outline: none;
+
+  &:focus + ${Thumb} {
     box-shadow: 0 0 2px 3px var(--accent-colour);
   }
 
-  [aria-pressed='true'] & {
+  &:checked + ${Thumb} {
     transform: translateX(2rem);
   }
 `
@@ -65,29 +65,41 @@ const icon = css`
   }
 `
 
-export default function ThemeSwitcher({ isDark, ...props }) {
+export default function ThemeSwitcher({ onChange, checked, ...props }) {
+  const spring = useSpring({
+    config: { mass: 1, tension: 120, friction: 14 },
+    delay: 200,
+    opacity: 1,
+    from: { opacity: 0 },
+  })
+
   return (
-    <button
-      type="button"
-      aria-pressed={isDark ? 'true' : 'false'}
-      css={button}
-      aria-label={`Switch to ${isDark ? 'light' : 'dark'}`}
-      {...props}
+    <animated.label
+      css={track}
+      style={spring}
+      htmlFor="toogleSwitch"
+      aria-label={`Switch to ${checked ? 'light' : 'dark'}`}
     >
-      <span css={track}>
-        <span css={thumb} />
-        <span css={icon} aria-hidden>
-          <Moon />
-        </span>
-        <span css={icon} style={{ color: '#ffc107' }} aria-hidden>
-          <Sun />
-        </span>
+      <input
+        type="checkbox"
+        id="toogleSwitch"
+        onChange={onChange}
+        checked={checked}
+        css={input}
+        {...props}
+      />
+      <Thumb />
+      <span css={icon} aria-hidden>
+        <Moon />
       </span>
-    </button>
+      <span css={icon} style={{ color: '#ffc107' }} aria-hidden>
+        <Sun />
+      </span>
+    </animated.label>
   )
 }
 
 ThemeSwitcher.propTypes = {
-  isDark: PropTypes.bool.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  checked: PropTypes.bool.isRequired,
 }

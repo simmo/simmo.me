@@ -36,7 +36,6 @@ const toStyle = ({ y, ...rest }) => ({
 export default function Home() {
   const trail = useTrail(4, {
     config,
-    delay: 200,
     opacity: 1,
     y: 0,
     from: { opacity: 0, y: -10 },
