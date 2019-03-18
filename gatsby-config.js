@@ -2,20 +2,21 @@ require('dotenv').config()
 
 module.exports = {
   siteMetadata: {
-    title: 'Mike Simmonds - Lead Front-end developer',
-    siteUrl: 'https://simmo.me',
+    domain: 'simmo.me',
+    title: 'Mike Simmonds - Lead front-end developer',
     description: 'Lead front-end developer, living in Sussex and working in London, UK.',
     keywords: [
-      'javascript',
-      'react',
-      'redux',
       'mike',
       'simmonds',
+      'javascript',
+      'developer',
+      'simmo',
+      'react',
+      'redux',
       'london',
+      'brighton',
       'html',
       'css',
-      'simmo',
-      'developer',
     ],
     social: {
       linkedin: 'http://lnkd.in/2T4KbK',
@@ -26,6 +27,7 @@ module.exports = {
     },
   },
   plugins: [
+    'gatsby-plugin-emotion',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-google-tagmanager',
@@ -36,8 +38,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
-        google: {
-          families: ['Bitter', 'Montserrat:400,700'],
+        typekit: {
+          id: 'cds1qpd',
         },
       },
     },

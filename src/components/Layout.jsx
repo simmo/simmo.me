@@ -1,53 +1,67 @@
-import React, { Fragment } from 'react'
+/* eslint-disable no-underscore-dangle */
+import React, { useState, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
-import styles from '../styles/layout.module.css'
+import { css } from '@emotion/core'
 
+import useSiteMeta from '../hooks/useSiteMeta'
+import Grid from './Grid'
+import ThemeSwitcher from './ThemeSwitcher'
 import favIcon from '../images/favicon.ico'
 import favIconMask from '../images/favicon.svg'
 import favIconApple from '../images/apple-touch-icon.png'
 
-const Layout = ({ children }) => (
-  <StaticQuery
-    query={graphql`
-      query SocialQuery {
-        site {
-          siteMetadata {
-            title
-            description
-            keywords
-          }
-        }
+export default function Layout({ children }) {
+  const {
+    domain, title, description, keywords,
+  } = useSiteMeta()
+  const [theme, setTheme] = useState(typeof window !== 'undefined' && window.__theme)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.__onThemeChange = (newTheme) => {
+        setTheme(newTheme)
       }
-    `}
-    render={({ site: { siteMetadata: meta } }) => (
-      <Fragment>
-        <Helmet titleTemplate={'%s - {meta.title}'} defaultTitle={meta.title}>
-          <html lang="en-GB" />
-          <meta name="author" content="Mike Simmonds" />
-          <meta name="description" content={meta.description} />
-          <meta name="keywords" content={meta.keywords.join()} />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta name="apple-mobile-web-app-title" content="simmo.me" />
-          <meta name="application-name" content="simmo.me" />
-          <meta
-            name="google-site-verification"
-            content="GbkERB2aLUOjt7IgBkrHpE61G7awq9zVYAu7ODXAfiA"
-          />
-          <link rel="apple-touch-icon" href={favIconApple} />
-          <link rel="icon" href={favIcon} />
-          <link rel="mask-icon" href={favIconMask} color="#111111" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-        </Helmet>
-        <main className={styles.grid}>{children}</main>
-      </Fragment>
-    )}
-  />
-)
+    }
+  }, [])
+
+  const handleChange = useCallback(({ target: { checked } }) => {
+    window.__saveTheme(checked ? 'dark' : 'light')
+  })
+
+  return (
+    <>
+      <Helmet
+        {...{
+          defaultTitle: title,
+          meta: [
+            { name: 'description', content: description },
+            { name: 'keywords', content: keywords.join() },
+            { name: 'apple-mobile-web-app-title', content: domain },
+            { name: 'application-name', content: domain },
+          ],
+          link: [
+            { rel: 'apple-touch-icon', href: favIconApple },
+            { rel: 'icon', href: favIcon },
+            { rel: 'mask-icon', href: favIconMask, color: '#111111' },
+            { rel: 'preconnect', href: 'https://use.typekit.net' },
+          ],
+        }}
+      />
+      <Grid as="main">{children}</Grid>
+      <div
+        css={css`
+          position: absolute;
+          top: var(--gutter);
+          right: var(--gutter);
+        `}
+      >
+        {theme && <ThemeSwitcher onChange={handleChange} checked={theme === 'dark'} />}
+      </div>
+    </>
+  )
+}
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
-
-export default Layout

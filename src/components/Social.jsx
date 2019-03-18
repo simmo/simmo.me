@@ -1,50 +1,70 @@
 import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
+import { css } from '@emotion/core'
+
+import useSiteMeta from '../hooks/useSiteMeta'
 import socialData from '../common/social'
-import styles from '../styles/social.module.css'
 
-export default () => (
-  <StaticQuery
-    query={graphql`
-      query LayoutQuery {
-        site {
-          siteMetadata {
-            social {
-              linkedin
-              github
-              stackoverflow
-              instagram
-              twitter
-            }
-          }
-        }
-      }
-    `}
-    render={({
-      site: {
-        siteMetadata: { social },
-      },
-    }) => (
-      <ul className={styles.list}>
-        {Object.entries(social).map(([key, url]) => {
-          const { icon: Icon, text } = socialData[key]
+const list = css`
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 4em;
+  padding: 0;
+`
 
-          return (
-            <li className={styles.item} key={key}>
-              <a
-                className={styles.link}
-                href={url}
-                aria-label={text}
-                title={text}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Icon />
-              </a>
-            </li>
-          )
-        })}
-      </ul>
-    )}
-  />
-)
+const item = css`
+  display: block;
+
+  & + & {
+    margin-left: 1.8em;
+  }
+`
+
+const link = css`
+  color: var(--primary-text-colour);
+  display: block;
+  fill: currentColor;
+  height: 1.4em;
+  transition-duration: 0.2s;
+  transition-property: color, opacity;
+  transition-timing-function: ease-out;
+  width: 1.4em;
+
+  svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  &:hover,
+  &:focus {
+    color: var(--accent-colour);
+  }
+`
+
+export default function Social() {
+  const { social } = useSiteMeta()
+
+  return (
+    <ul css={list}>
+      {Object.entries(social).map(([key, url]) => {
+        const { icon: Icon, text } = socialData[key]
+
+        return (
+          <li css={item} key={key}>
+            <a
+              css={link}
+              href={url}
+              aria-label={text}
+              title={text}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon />
+            </a>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
