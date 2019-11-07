@@ -1,0 +1,36 @@
+body {
+  --gutter: 2rem;
+  --primary-background-color: #fafafa;
+  --secondary-background-color: #eee;
+  --primary-text-colour: #222;
+  --secondary-text-colour: #444;
+  --accent-colour: #c0392b;
+
+  font-size: 18px;
+  font-family: "Avenir Next", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
+}
+
+body.dark {
+  --primary-background-color: #1b1b1b;
+  --secondary-background-color: #000;
+  --primary-text-colour: #f9f9f9;
+  --secondary-text-colour: #bbb;
+  --accent-colour: #e74c3c;
+}
+
+#sapper {
+  background-color: var(--primary-background-color);
+  color: var(--primary-text-colour);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+html,
+body,
+#sapper {
+  height: 100%;
+}
