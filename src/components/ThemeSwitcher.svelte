@@ -26,22 +26,6 @@
   });
 </script>
 
-<!--
-
-const icon = css`
-  color: #fff;
-  display: block;
-  height: 100%;
-  padding: 0.2rem;
-  width: 50%;
-
-  > svg {
-    height: 100%;
-    object-fit: contain;
-    width: 100%;
-  }
-` -->
-
 <style>
   div {
     position: absolute;
