@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <title>Mike Simmonds - Lead front-end developer</title>
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#333333" />
@@ -12,24 +11,21 @@
     <meta name="author" content="Mike Simmonds" />
     <meta name="description" content="Lead front-end developer, living in Sussex and working in London, UK." />
     <meta name="keywords" content="mike,simmonds,javascript,developer,simmo,react,redux,london,brighton,html,css" />
-
     %sapper.base%
-
     <link rel="stylesheet" href="global.css" />
     <link rel="manifest" href="manifest.json" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="mask-icon" href="/favicon.svg" color="#111111" />
     <link rel="preconnect" href="https://use.typekit.net" />
+    <link rel="stylesheet" href="https://use.typekit.net/cds1qpd.css">
     %sapper.styles%
     %sapper.head%
   </head>
   <body>
     <script>
       (function() {
-        var themeKey = "theme",
-          dark = "dark",
-          light = "light";
+        var themeKey = "theme", dark = "dark", light = "light";
         window.__onThemeChange = function() {};
 
         function setTheme(theme) {
@@ -39,9 +35,7 @@
           window.__onThemeChange(theme);
         }
 
-        var systemIsDarkQuery = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        );
+        var systemIsDarkQuery = window.matchMedia("(prefers-color-scheme: dark)");
         systemIsDarkQuery.addListener(function(event) {
           window.__saveTheme(event.matches ? dark : light);
         });
