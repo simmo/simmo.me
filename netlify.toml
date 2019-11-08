@@ -1,3 +1,38 @@
 [build]
   publish = "__sapper__/export/"
   command = "yarn export"
+
+[[redirects]]
+  from = "https://simmo.me/*"
+  to = "https://mike.id/:splat"
+  force = true
+
+[[redirects]]
+  from = "https://simmo.codes/*"
+  to = "https://mike.id/:splat"
+  force = true
+
+[[redirects]]
+  from = "https://simmo.work/*"
+  to = "https://mike.id/:splat"
+  force = true
+
+[[redirects]]
+  from = "https://simmo.design/*"
+  to = "https://mike.id/:splat"
+  force = true
+
+[[redirects]]
+  from = "https://simmo.dev/*"
+  to = "https://mike.id/:splat"
+  force = true
+
+[[redirects]]
+  from = "https://simmo.id/*"
+  to = "https://mike.id/:splat"
+  force = true
+
+[[redirects]]
+  from = "https://simmo.netlify.com/*"
+  to = "https://mike.id/:splat"
+  force = true
