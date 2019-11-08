@@ -54,16 +54,16 @@
   }
 
   a {
-    /* border-bottom: 0.2rem solid; */
+    border-bottom: 0.1rem solid transparent;
     color: var(--accent-colour);
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
     transition: border-bottom-color ease-out 0.2s;
   }
 
   a:hover,
   a:focus {
-    /* border-bottom-color: transparent; */
+    border-bottom-color: currentColor;
   }
 
   .face {
