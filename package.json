@@ -7,7 +7,8 @@
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "dependencies": {
     "@emotion/core": "^10.0.9",
