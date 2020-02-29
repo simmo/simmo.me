@@ -65,7 +65,11 @@ const icon = css`
   }
 `
 
-export default function ThemeSwitcher({ onChange, checked, ...props }) {
+const sunIcon = css`
+  color: #ffc107;
+`
+
+export default function ThemeSwitcher({ checked, onChange }) {
   const spring = useSpring({
     config: { mass: 1, tension: 120, friction: 14 },
     delay: 200,
@@ -86,13 +90,12 @@ export default function ThemeSwitcher({ onChange, checked, ...props }) {
         onChange={onChange}
         checked={checked}
         css={input}
-        {...props}
       />
       <Thumb />
       <span css={icon} aria-hidden>
         <Moon />
       </span>
-      <span css={icon} style={{ color: '#ffc107' }} aria-hidden>
+      <span css={[icon, sunIcon]} aria-hidden>
         <Sun />
       </span>
     </animated.label>
