@@ -3,7 +3,11 @@
 import Helmet from 'react-helmet'
 
 // eslint-disable-next-line import/prefer-default-export
-export const onRenderBody = ({ setHeadComponents, setHtmlAttributes, setBodyAttributes }) => {
+export const onRenderBody = ({
+  setHeadComponents,
+  setHtmlAttributes,
+  setBodyAttributes,
+}) => {
   const helmet = Helmet.renderStatic()
 
   setHtmlAttributes(helmet.htmlAttributes.toComponent())

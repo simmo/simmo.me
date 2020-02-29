@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
-import styled from '@emotion/styled'
 import { animated, useSpring } from 'react-spring'
 
 import { Moon, Sun } from './Icons'
@@ -19,7 +18,7 @@ const track = css`
   width: 3.5rem;
 `
 
-const Thumb = styled.span`
+const thumb = css`
   display: block;
   background-color: #fff;
   border-radius: 100%;
@@ -42,11 +41,11 @@ const input = css`
   height: 0;
   outline: none;
 
-  &:focus + ${Thumb} {
+  &:focus + span {
     box-shadow: 0 0 2px 3px var(--accent-colour);
   }
 
-  &:checked + ${Thumb} {
+  &:checked + span {
     transform: translateX(2rem);
   }
 `
@@ -81,17 +80,15 @@ export default function ThemeSwitcher({ checked, onChange }) {
     <animated.label
       css={track}
       style={spring}
-      htmlFor="toogleSwitch"
       aria-label={`Switch to ${checked ? 'light' : 'dark'}`}
     >
       <input
         type="checkbox"
-        id="toogleSwitch"
         onChange={onChange}
         checked={checked}
         css={input}
       />
-      <Thumb />
+      <span css={thumb} />
       <span css={icon} aria-hidden>
         <Moon />
       </span>

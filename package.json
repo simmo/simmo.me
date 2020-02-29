@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.9",
-    "@emotion/styled": "^10.0.9",
     "dotenv": "^8.2.0",
     "gatsby": "2.19.23",
     "gatsby-plugin-emotion": "^4.0.6",
@@ -30,10 +29,13 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "eslint-plugin-react-hooks": "^2.5.0"
+    "eslint-plugin-react-hooks": "^2.5.0",
+    "prettier": "^1.19.1"
   },
   "browserslist": [
     "last 1 Edge version",
@@ -47,13 +49,17 @@
   ],
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": "airbnb",
+    "extends": [
+      "airbnb",
+      "plugin:prettier/recommended"
+    ],
     "env": {
       "browser": true,
       "es6": true,
       "node": true
     },
     "rules": {
+      "react/jsx-props-no-spreading": false,
       "semi": [
         2,
         "never"

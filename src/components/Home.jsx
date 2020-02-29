@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
 import { css } from '@emotion/core'
 import { animated, useTrail } from 'react-spring'
@@ -48,17 +49,14 @@ export default function Home() {
       </animated.h1>
       <div css={intro}>
         <animated.p style={toStyle(trail[1])}>
-          Hi, I’m Mike, a UK based, Lead front-end developer living in Sussex, working in
-          London.
+          Hi, I’m Mike, a UK based, Lead front-end developer living in Sussex,
+          working in London.
           <br />
-          Currently
-          {' '}
-          <a href="https://zonedigital.com">@Zone</a>
-.
+          Currently <a href="https://zonedigital.com">@Zone</a>.
         </animated.p>
         <animated.p style={toStyle(trail[2])}>
-          I’ve spent over 10 years working across marketing and publishing sectors to deliver
-          high-end web apps, sites and products.
+          I’ve spent over 10 years working across marketing and publishing
+          sectors to deliver high-end web apps, sites and products.
         </animated.p>
       </div>
       <animated.div style={toStyle(trail[3])}>

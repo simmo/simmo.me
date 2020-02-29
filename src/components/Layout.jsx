@@ -11,15 +11,21 @@ import favIcon from '../images/favicon.ico'
 import favIconMask from '../images/favicon.svg'
 import favIconApple from '../images/apple-touch-icon.png'
 
+const themeSwitcherWrapper = css`
+  position: absolute;
+  top: var(--gutter);
+  right: var(--gutter);
+`
+
 export default function Layout({ children }) {
-  const {
-    domain, title, description, keywords,
-  } = useSiteMeta()
-  const [theme, setTheme] = useState(typeof window !== 'undefined' && window.__theme)
+  const { domain, title, description, keywords } = useSiteMeta()
+  const [theme, setTheme] = useState(
+    typeof window !== 'undefined' && window.__theme
+  )
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      window.__onThemeChange = (newTheme) => {
+      window.__onThemeChange = newTheme => {
         setTheme(newTheme)
       }
     }
@@ -50,13 +56,11 @@ export default function Layout({ children }) {
       />
       <Grid as="main">{children}</Grid>
       <div
-        css={css`
-          position: absolute;
-          top: var(--gutter);
-          right: var(--gutter);
-        `}
+        css={themeSwitcherWrapper}
       >
-        {theme && <ThemeSwitcher onChange={handleChange} checked={theme === 'dark'} />}
+        {theme && (
+          <ThemeSwitcher onChange={handleChange} checked={theme === 'dark'} />
+        )}
       </div>
     </>
   )

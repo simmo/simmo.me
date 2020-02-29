@@ -4,7 +4,8 @@ module.exports = {
   siteMetadata: {
     domain: 'mike.id',
     title: 'Mike Simmonds - Lead front-end developer',
-    description: 'Lead front-end developer, living in Sussex and working in London, UK.',
+    description:
+      'Lead front-end developer, living in Sussex and working in London, UK.',
     keywords: [
       'mike',
       'simmonds',
