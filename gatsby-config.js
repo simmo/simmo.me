@@ -2,9 +2,10 @@ require('dotenv').config()
 
 module.exports = {
   siteMetadata: {
-    domain: 'simmo.me',
+    domain: 'mike.id',
     title: 'Mike Simmonds - Lead front-end developer',
-    description: 'Lead front-end developer, living in Sussex and working in London, UK.',
+    description:
+      'Lead front-end developer, living in Sussex and working in London, UK.',
     keywords: [
       'mike',
       'simmonds',
@@ -28,7 +29,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-emotion',
-    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-react-helmet-async',
     {
       resolve: 'gatsby-plugin-google-tagmanager',
       options: {

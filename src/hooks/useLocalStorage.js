@@ -10,11 +10,14 @@ export default function useLocalStorage(key) {
 
     return null
   })
-  const handleStorage = useCallback((event) => {
-    if ((event.isTrusted, event.key === key && event.oldValue !== event.newValue)) {
-      setState(JSON.parse(event.newValue))
-    }
-  }, [])
+  const handleStorage = useCallback(
+    ({ isTrusted, newValue, oldValue, key: storageKey }) => {
+      if ((isTrusted, storageKey === key && oldValue !== newValue)) {
+        setState(JSON.parse(newValue))
+      }
+    },
+    []
+  )
 
   useEffect(() => {
     if (isSupported) {
@@ -29,11 +32,11 @@ export default function useLocalStorage(key) {
   }, [handleStorage])
 
   const updater = useCallback(
-    (value) => {
+    value => {
       localStorage.setItem(key, JSON.stringify(value))
       setState(value)
     },
-    [key],
+    [key]
   )
 
   return [state, updater]

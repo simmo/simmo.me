@@ -13,9 +13,5 @@ const logo = css`
 `
 
 export default function Logo() {
-  return (
-    <span css={logo} aria-label="Mike Simmonds">
-      simmo
-    </span>
-  )
+  return <span css={logo}>Mike Simmonds</span>
 }

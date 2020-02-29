@@ -22,7 +22,7 @@ export default function useSiteMeta() {
           }
         }
       }
-    `,
+    `
   )
 
   return siteMetadata
