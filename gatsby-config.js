@@ -28,7 +28,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-emotion',
-    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-react-helmet-async',
     {
       resolve: 'gatsby-plugin-google-tagmanager',
       options: {
