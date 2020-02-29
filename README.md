@@ -13,7 +13,7 @@ Using:
 
 ## License
 
-MIT © [Mike Simmonds](https://simmo.me)
+MIT © [Mike Simmonds](https://mike.id)
 
 [image-netlify]: https://api.netlify.com/api/v1/badges/d1855e7c-199c-4c9a-8ef1-2f00868254d7/deploy-status
 [image-travis]: https://img.shields.io/travis/com/simmo/personal-site.svg?style=popout-square&logo=travis

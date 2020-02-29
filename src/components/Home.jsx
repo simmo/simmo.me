@@ -48,7 +48,7 @@ export default function Home() {
       </animated.h1>
       <div css={intro}>
         <animated.p style={toStyle(trail[1])}>
-          Hi, I’m Mike Simmonds, a UK based, Lead front-end developer living in Sussex, working in
+          Hi, I’m Mike, a UK based, Lead front-end developer living in Sussex, working in
           London.
           <br />
           Currently

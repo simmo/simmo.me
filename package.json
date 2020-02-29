@@ -1,7 +1,7 @@
 {
   "private": true,
   "repository": "github:simmo/personal-site",
-  "author": "Mike Simmonds (https://simmo.me)",
+  "author": "Mike Simmonds (https://mike.id)",
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
