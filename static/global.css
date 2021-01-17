@@ -1,0 +1,107 @@
+:root {
+  --space-tiny: 0.25rem;
+  --space-small: 0.5rem;
+  --space-medium: 1.5rem;
+  --space-large: 3rem;
+
+  --colour-black: #000;
+  --colour-off-black: #1e272e;
+  --colour-red: #ee5253;
+  --colour-green: #10ac84;
+  --colour-dark-grey: #555;
+  --colour-mid-grey: #999;
+  --colour-light-grey: #eee;
+  --colour-off-white: #fafafa;
+  --colour-white: #fff;
+
+  --theme-background: var(--colour-off-white);
+  --theme-background-invert: var(--colour-off-black);
+  --theme-text: var(--colour-black);
+  --theme-text-invert: var(--colour-light-grey);
+  --theme-text-subtle: var(--colour-dark-grey);
+  --theme-accent-primary: var(--colour-red);
+  --theme-accent-secondary: var(--colour-green);
+
+  font-size: 14px;
+}
+
+body.dark {
+  --theme-background: var(--colour-off-black);
+  --theme-background-invert: var(--colour-off-white);
+  --theme-text: var(--colour-light-grey);
+  --theme-text-invert: var(--colour-black);
+  --theme-text-subtle: var(--colour-mid-grey);
+  --theme-accent-primary: var(--colour-red);
+  --theme-accent-secondary: var(--colour-green);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto Mono", ui-monospace, Menlo, Monaco, "Cascadia Mono",
+    "Segoe UI Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  line-height: 1.8;
+  font-size: 100%;
+  color: #333;
+  background-color: var(--theme-background);
+  color: var(--theme-text);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: bold;
+  line-height: inherit;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 1.15rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+small {
+  font-size: 0.86rem;
+}
+
+p,
+ul,
+ol {
+  margin: 0;
+}
+
+a {
+  color: var(--theme-accent-primary);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  border-bottom: 1px solid var(--theme-accent-primary);
+}

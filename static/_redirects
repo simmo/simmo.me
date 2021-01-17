@@ -1,9 +1,0 @@
-# Redirect domain aliases to primary domain
-https://simmo.me/* https://mike.id/:splat 301!
-https://simmo.codes/* https://mike.id/:splat 301!
-https://simmo.work/* https://mike.id/:splat 301!
-https://simmo.dev/* https://mike.id/:splat 301!
-https://simmo.id/* https://mike.id/:splat 301!
-
-# Optional: Redirect default Netlify subdomain to primary domain
-https://simmo.netlify.com/* https://mike.id/:splat 301!
